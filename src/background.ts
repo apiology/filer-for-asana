@@ -16,10 +16,14 @@ type SuggestFunction = (suggestResults: chrome.omnibox.SuggestResult[]) => void;
 
 const populateOmnibox = async (text: string, suggest: SuggestFunction) => {
   const suggestions = await pullOmniboxSuggestions(text);
-  suggest(suggestions);
-  console.log(`${suggestions.length} suggestions from ${text}:`, suggestions);
-  const description = `<dim>${suggestions.length} results for ${text}:</dim>`;
-  chrome.omnibox.setDefaultSuggestion({ description });
+  if (suggestions.length === 1) {
+    chrome.omnibox.setDefaultSuggestion({ description: suggestions[0].description });
+  } else {
+    suggest(suggestions);
+    console.log(`${suggestions.length} suggestions from ${text}:`, suggestions);
+    const description = `<dim>${suggestions.length} results for ${text}:</dim>`;
+    chrome.omnibox.setDefaultSuggestion({ description });
+  }
 };
 
 const pullAndReportSuggestions = async (text: string, suggest: SuggestFunction) => {
