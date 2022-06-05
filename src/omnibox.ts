@@ -29,7 +29,7 @@ export const escapeHTML = (str: string) => {
 export const pullOmniboxSuggestions = async (text: string) => {
   const suggestions = await pullSuggestions(text);
   return suggestions.map((suggestion: Suggestion) => ({
-    content: `filer-for-asana:${encodeURIComponent(text)}`,
+    content: suggestion.url,
     description: escapeHTML(suggestion.description),
   }));
 };
