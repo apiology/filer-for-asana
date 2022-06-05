@@ -2,15 +2,15 @@
   "_where_i_got_this_from": "https://webpack.js.org/guides/typescript/",
   "compilerOptions": {
     "outDir": "./dist/",
+    "lib": ["es2021"],
+    "module": "node16",
+    "target": "es2021",
     "strict": true,
-    "module": "es6",
-    "target": "es2015",
-    "jsx": "react",
-    "moduleResolution": "node",
-    "lib": ["es2015", "dom"],
-    "sourceMap": true
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src"
+    "src/alfred.ts"
   ]
 }

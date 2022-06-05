@@ -21,7 +21,10 @@ webpack: ## run webpack and tie together modules for use by browser
 start: ## run webpack continuously and watch files
 	npm start
 
-default: webpack typecheck package test quality ## run default webpack, typechecking, tests and quality, and package into a .zip file
+tsc:
+	npx tsc
+
+default: tsc package quality ## run default webpack, typechecking, tests and quality, and package into a .zip file
 
 package:
 	cd dist && zip -r ../package.zip .
