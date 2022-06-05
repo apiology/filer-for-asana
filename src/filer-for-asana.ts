@@ -1,23 +1,27 @@
 /**
  * filer-for-asana module.
  *
- * Chrome extension which quickly creates Asana tasks from the Chrome Omnibox.
+ * Chrome extension which quickly creates Asana tasks from the Chrome Omnibox and Alfred.
  */
 
-import { escapeHTML } from './omnibox.js';
 import { fetchWorkspaceName } from './config.js';
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
 
 export const logSuccess = (result: string | object): void => console.log('Upvoted task:', result);
 
-export const pullOmniboxSuggestions = async (text: string) => {
-  const workspaceName = await fetchWorkspaceName();
+export type Suggestion = {
+  text: string;
+  description: string;
+}
+
+export const pullSuggestions = async (text: string): Promise<Suggestion[]> => {
   console.log(`Got text as [${text}]`);
-  const content = `filer-for-asana:${encodeURIComponent(text)}`;
+  const workspaceName = await fetchWorkspaceName();
+  const description = `File ${text} in workspace ${workspaceName}`;
   return [
     {
-      content,
-      description: escapeHTML(`File ${text} in workspace ${workspaceName}`),
+      text,
+      description,
     },
   ];
 };
