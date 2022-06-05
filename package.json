@@ -33,6 +33,7 @@
     "copy-webpack-plugin": "^9",
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.22.1",
     "ts-loader": "~8",
     "typescript": "^4.4.4",

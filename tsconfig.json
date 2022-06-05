@@ -1,9 +1,10 @@
 {
   "_where_i_got_this_from": "https://webpack.js.org/guides/typescript/",
   "compilerOptions": {
+    "baseUrl": "src",
     "outDir": "./dist/",
     "lib": ["es2021"],
-    "module": "node16",
+    "module": "nodenext",
     "target": "es2021",
     "strict": true,
     "esModuleInterop": true,
@@ -11,6 +12,7 @@
     "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src/alfred.ts"
+    "src/alfred.ts",
+    "src/asana.d.ts"
   ]
 }
