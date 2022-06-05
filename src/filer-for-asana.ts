@@ -6,8 +6,9 @@
 
 import { fetchWorkspaceName } from './config.js';
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
+import { log } from './logger.js';
 
-export const logSuccess = (result: string | object): void => console.log('Upvoted task:', result);
+export const logSuccess = (result: string | object): void => log('Upvoted task:', result);
 
 export type Suggestion = {
   url: string
@@ -16,9 +17,9 @@ export type Suggestion = {
 }
 
 export const pullSuggestions = async (text: string): Promise<Suggestion[]> => {
-  console.log(`Got text as [${text}]`);
+  log(`Got text as [${text}]`);
   const workspaceName = await fetchWorkspaceName();
-  const description = `File ${text} in workspace ${workspaceName}`;
+  const description = `File "${text}" in workspace ${workspaceName}`;
   const url = `filer-for-asana:${encodeURIComponent(text)}`;
   return [
     {

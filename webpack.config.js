@@ -8,7 +8,6 @@ const CopyPlugin = require('copy-webpack-plugin'); // eslint-disable-line @types
 module.exports = {
   entry: {
     background: ['./src/background.ts'],
-    options: ['./src/options.ts'],
   },
   // https://webpack.js.org/guides/typescript/
   module: {

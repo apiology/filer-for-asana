@@ -13,6 +13,7 @@
   },
   "include": [
     "src/alfred.ts",
+    "src/file.ts",
     "src/asana.d.ts"
   ]
 }

@@ -42,7 +42,7 @@ export const pullResult = async (text: string) => {
   };
   const workspaceGid = await fetchWorkspaceGid();
 
-  console.log('requesting typeahead with workspaceGid', workspaceGid,
+  log('requesting typeahead with workspaceGid', workspaceGid,
     ' and query of ', query);
   chrome.omnibox.setDefaultSuggestion({
     description: `<dim>Searching for ${text}...</dim>`,

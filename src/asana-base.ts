@@ -7,7 +7,8 @@
 
 import * as Asana from 'asana';
 import { fetchAsanaAccessToken, fetchWorkspaceName } from './config.js';
-import { chromeStorageSyncFetch, chromeStorageSyncStore } from './storage.js';
+import { cacheFetch, cacheStore } from './cache.js';
+import { log } from './logger.js';
 
 let fetchedClient: Asana.Client | null = null;
 
@@ -17,7 +18,12 @@ export const fetchClient = async () => {
   }
   const asanaAccessToken = await fetchAsanaAccessToken();
 
-  fetchedClient = Asana.Client.create().useAccessToken(asanaAccessToken);
+  const clientOptions: Asana.ClientOptions = {
+    defaultHeaders: {
+      'Asana-Enable': 'new_user_task_lists',
+    },
+  };
+  fetchedClient = Asana.Client.create(clientOptions).useAccessToken(asanaAccessToken);
   return fetchedClient;
 };
 
@@ -47,7 +53,7 @@ export function findGid<T extends Asana.resources.Resource>(
     const stream = resourceList.stream();
     stream.on('data', (resource: T): void => {
       if (isCorrectResource(resource)) {
-        console.log(`Found ${resource.gid}`);
+        log(`Found ${resource.gid}`);
         resolve(resource.gid);
       }
     });
@@ -63,7 +69,7 @@ export const fetchWorkspaceGid = async () => {
   if (fetchedWorkspaceGid != null) {
     return fetchedWorkspaceGid;
   }
-  fetchedWorkspaceGid = await chromeStorageSyncFetch('workspaceGid', 'string');
+  fetchedWorkspaceGid = await cacheFetch('workspaceGid', 'string');
   if (fetchedWorkspaceGid != null) {
     return fetchedWorkspaceGid;
   }
@@ -74,7 +80,7 @@ export const fetchWorkspaceGid = async () => {
   if (fetchedWorkspaceGid == null) {
     throw new Error('Could not find workspace GID!');
   }
-  chromeStorageSyncStore('workspaceGid', fetchedWorkspaceGid);
+  cacheStore('workspaceGid', fetchedWorkspaceGid);
 
   return fetchedWorkspaceGid;
 };
