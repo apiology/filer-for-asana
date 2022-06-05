@@ -1,11 +1,10 @@
-// webpack requires a 'require' here, which seems reasonable as it's,
-// you know, the thing that provides import to begin with:
-//
-// SyntaxError: Cannot use import statement outside a module
-const webpack = require('webpack'); // eslint-disable-line @typescript-eslint/no-var-requires
-const CopyPlugin = require('copy-webpack-plugin'); // eslint-disable-line @typescript-eslint/no-var-requires
+import webpack from 'webpack';
+import CopyPlugin from 'copy-webpack-plugin';
+import { createRequire } from 'module';
 
-module.exports = {
+const require = createRequire(import.meta.url);
+
+export default {
   entry: {
     background: ['./src/background.ts'],
     options: ['./src/options.ts'],
