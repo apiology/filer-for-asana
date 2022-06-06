@@ -6,8 +6,8 @@
  */
 
 import * as Asana from 'asana';
-import { fetchAsanaAccessToken, fetchWorkspaceName } from './config';
-import { chromeStorageSyncFetch, chromeStorageSyncStore } from './storage';
+import { fetchAsanaAccessToken, fetchWorkspaceName } from './config.js';
+import { chromeStorageSyncFetch, chromeStorageSyncStore } from './storage.js';
 
 let fetchedClient: Asana.Client | null = null;
 
