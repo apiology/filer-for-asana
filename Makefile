@@ -21,12 +21,18 @@ webpack: ## run webpack and tie together modules for use by browser
 start: ## run webpack continuously and watch files
 	npm start
 
-tsc:
-	npx tsc -p tsconfig.alfred.json
+build-alfy:
+	npm run build-alfy
 
-default: tsc package quality ## run default webpack, typechecking, tests and quality, and package into a .zip file
+build-chrome-extension: webpack
 
-package:
+build: build-alfy build-chrome-extension
+
+package: package-chrome-extension
+
+default: build package quality ## build and package up for both Alfred and the Chrome Extension
+
+package-chrome-extension: build-chrome-extension
 	cd dist && zip -r ../package.zip .
 
 typecheck: webpack  ## typecheck by running webpack

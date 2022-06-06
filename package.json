@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "start": "webpack --mode=development --watch",
+    "build-alfy": "tsc -p tsconfig.alfred.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "module",

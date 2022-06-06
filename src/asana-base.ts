@@ -6,9 +6,9 @@
  */
 
 import * as Asana from 'asana';
-import { fetchAsanaAccessToken, fetchWorkspaceName } from './alfred/config.js';
-import { cacheFetch, cacheStore } from './alfred/cache.js';
-import { log } from './alfred/logger.js';
+import { fetchAsanaAccessToken, fetchWorkspaceName } from './alfred/config.js'; // TODO clean up
+import { cacheFetch, cacheStore } from './alfred/cache.js'; // TODO clean up
+import { log } from './alfred/logger.js'; // TODO clean up
 
 let fetchedClient: Asana.Client | null = null;
 

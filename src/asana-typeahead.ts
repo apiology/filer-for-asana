@@ -6,6 +6,7 @@
  */
 
 import * as Asana from 'asana';
+import { log } from './alfred/logger.js'; // TODO fix this dependency
 import { escapeHTML } from './chrome-extension/omnibox.js'; // TODO fix this dependendency
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
 
