@@ -4,9 +4,9 @@
  * Chrome extension which quickly creates Asana tasks from the Chrome Omnibox and Alfred.
  */
 
-import { fetchWorkspaceName } from './config.js';
+import { fetchWorkspaceName } from './alfred/config.js';
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
-import { log } from './logger.js';
+import { log } from './alfred/logger.js';
 
 export const logSuccess = (result: string | object): void => log('Upvoted task:', result);
 

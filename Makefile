@@ -22,7 +22,7 @@ start: ## run webpack continuously and watch files
 	npm start
 
 tsc:
-	npx tsc
+	npx tsc -p tsconfig.alfred.json
 
 default: tsc package quality ## run default webpack, typechecking, tests and quality, and package into a .zip file
 

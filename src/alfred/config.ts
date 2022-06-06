@@ -1,4 +1,4 @@
-import { isString } from './types.js';
+import { isString } from '../types.js';
 
 const fetchConfigString = (envVarName: string) => {
   const value = process.env[envVarName];

@@ -4,7 +4,7 @@
  * Contains functions useful to interact with chrome.omnibox API
  */
 
-import { pullSuggestions, Suggestion } from './filer-for-asana';
+import { pullSuggestions, Suggestion } from '../filer-for-asana';
 
 // How on God's green earth is there no built-in function to do this?
 //

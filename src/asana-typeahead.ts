@@ -6,7 +6,7 @@
  */
 
 import * as Asana from 'asana';
-import { escapeHTML } from './omnibox.js';
+import { escapeHTML } from './chrome-extension/omnibox.js'; // TODO fix this dependendency
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
 
 export const formatTask = (task: Asana.resources.Tasks.Type) => {

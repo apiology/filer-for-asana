@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDirs": ["src/common", "src/alfred"]
+  },
+  "include": [
+    "src/asana.d.ts",
+    "src/alfred/alfred.ts",
+    "src/alfred/file.ts"
+  ]
+}

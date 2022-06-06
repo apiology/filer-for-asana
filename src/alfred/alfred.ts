@@ -1,6 +1,6 @@
 import alfy, { ScriptFilterItem } from 'alfy';
-import { pullSuggestions } from './filer-for-asana.js';
-import { isString } from './types.js';
+import { pullSuggestions } from '../filer-for-asana.js';
+import { isString } from '../types.js';
 
 const run = async () => {
   let items: ScriptFilterItem[];

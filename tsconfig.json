@@ -11,10 +11,5 @@
     "lib": ["es2015", "dom"],
     "skipLibCheck": true,
     "sourceMap": true
-  },
-  "include": [
-    "src/alfred.ts",
-    "src/file.ts",
-    "src/asana.d.ts"
-  ]
+  }
 }
