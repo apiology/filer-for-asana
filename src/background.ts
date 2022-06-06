@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 import { log } from './logger';
 import {
   actOnInputData, logSuccess, pullOmniboxSuggestions,
-} from './filer-for-asana';
+} from './filer-for-asana.js';
 
 type SuggestFunction = (suggestResults: chrome.omnibox.SuggestResult[]) => void;
 
