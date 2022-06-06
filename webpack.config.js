@@ -8,6 +8,7 @@ const require = createRequire(import.meta.url);
 export default {
   entry: {
     background: ['./src/background.ts'],
+    options: ['./src/options.ts'],
   },
   // https://webpack.js.org/guides/typescript/
   module: {
