@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import CopyPlugin from 'copy-webpack-plugin';
 import { createRequire } from 'module';
+import ResolveTypeScriptPlugin from 'resolve-typescript-plugin';
 
 const require = createRequire(import.meta.url);
 
@@ -25,6 +26,7 @@ export default {
   // https://stackoverflow.com/questions/43595555/webpack-cant-resolve-typescript-modules
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    plugins: [new ResolveTypeScriptPlugin()],
     fallback: {
       // The node-asana library uses the node API and expects users to
       // use webpack to polyfill it when using BrowserJS:
