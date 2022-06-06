@@ -6,8 +6,8 @@
  */
 
 import * as Asana from 'asana';
-import { escapeHTML } from './omnibox';
-import { fetchClient, fetchWorkspaceGid } from './asana-base';
+import { escapeHTML } from './omnibox.js';
+import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
 
 export const formatTask = (task: Asana.resources.Tasks.Type) => {
   if (task.memberships == null) {

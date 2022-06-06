@@ -32,6 +32,7 @@
     "copy-webpack-plugin": "^9",
     "eslint": "^7.18.0",
     "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-import-resolver-typescript": "^2.7.1",
     "eslint-plugin-import": "^2.22.1",
     "ts-loader": "~8",
     "typescript": "^4.4.4",
@@ -42,11 +43,11 @@
   "dependencies": {
     "asana": "^0.18.5",
     "buffer": "^6.0.3",
+    "lodash": "^4.17.21",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
     "url": "^0.11.0",
-    "util": "^0.12.4",
-    "lodash": "^4.17.21"
+    "util": "^0.12.4"
   },
   "_resolutionsComments": "asana requires request ^2.88.2 (which is deprecated and not receiving updates), which requires http-signature ~1.2.0, which requires jsprim ^1.2.2, which requires json-schema@0.2.3, which is perhaps vulnerable to CVE-2021-3918 (moderate)",
   "resolutions": {
