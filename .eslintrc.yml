@@ -15,11 +15,6 @@ plugins:
 parserOptions:
   ecmaVersion: 11
   sourceType: module
-globals:
-  asanaAccessToken: readonly
-  workspaceName: readonly
-  customFieldName: readonly
-  increment: readonly
 settings:
   # https://newbedev.com/using-eslint-with-typescript-unable-to-resolve-path-to-module
   # https://stackoverflow.com/a/63451047/2625807

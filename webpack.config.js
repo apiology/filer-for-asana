@@ -1,6 +1,6 @@
 import webpack from 'webpack';
-import CopyPlugin from 'copy-webpack-plugin';
 import { createRequire } from 'module';
+import CopyPlugin from 'copy-webpack-plugin';
 import ResolveTypeScriptPlugin from 'resolve-typescript-plugin';
 
 const require = createRequire(import.meta.url);
