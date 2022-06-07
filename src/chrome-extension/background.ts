@@ -10,10 +10,10 @@
 import * as _ from 'lodash';
 import { actOnInputData, logSuccess } from '../filer-for-asana.js';
 import { pullOmniboxSuggestions } from './omnibox.js';
-import { setCli } from '../cli.js';
-import ChromeExtensionCli from './chrome-extension-cli.js';
+import { setPlatform } from '../platform.js';
+import ChromeExtensionPlatform from './chrome-extension-platform.js';
 
-setCli(new ChromeExtensionCli());
+setPlatform(new ChromeExtensionPlatform());
 
 type SuggestFunction = (suggestResults: chrome.omnibox.SuggestResult[]) => void;
 

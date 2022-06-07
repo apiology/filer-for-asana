@@ -6,7 +6,7 @@ import AlfredLogger from './alfred-logger.js';
 // for TypeScript
 /* eslint-disable class-methods-use-this */
 
-export default class AlfredCli {
+export default class AlfredPlatform {
   config() {
     return new AlfredConfig();
   }

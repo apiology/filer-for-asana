@@ -6,12 +6,12 @@
  */
 
 import * as Asana from 'asana';
-import { cli } from './cli.js';
+import { platform } from './platform.js';
 
 let fetchedClient: Asana.Client | null = null;
 
 export const fetchClient = async () => {
-  const config = cli().config();
+  const config = platform().config();
   if (fetchedClient != null) {
     return fetchedClient;
   }
@@ -30,7 +30,7 @@ export function findGid<T extends Asana.resources.Resource>(
   resourceList: Asana.resources.ResourceList<T>,
   isCorrectResource: (resource: T) => boolean
 ) {
-  const logger = cli().logger();
+  const logger = platform().logger();
   return new Promise<string | null>((resolve, reject) => {
     // If I had esnext.asynciterable in
     // tsconfig.json#compilerOptions.lib, and if node-asana's
@@ -66,7 +66,7 @@ export function findGid<T extends Asana.resources.Resource>(
 let fetchedWorkspaceGid: string | null = null;
 
 export const fetchWorkspaceGid = async () => {
-  const c = cli();
+  const c = platform();
   const config = c.config();
   const cache = c.cache();
 

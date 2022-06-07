@@ -6,7 +6,7 @@
  */
 
 import * as Asana from 'asana';
-import { cli } from './cli';
+import { platform } from './platform.js';
 import { escapeHTML } from './chrome-extension/omnibox.js'; // TODO fix this dependendency
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
 
@@ -42,7 +42,7 @@ export const pullResult = async (text: string) => {
     opt_fields: ['name', 'completed', 'parent.name', 'custom_fields.gid', 'custom_fields.number_value', 'memberships.project.name'],
   };
   const workspaceGid = await fetchWorkspaceGid();
-  const logger = cli().logger();
+  const logger = platform().logger();
 
   logger.log('requesting typeahead with workspaceGid', workspaceGid,
     ' and query of ', query);
