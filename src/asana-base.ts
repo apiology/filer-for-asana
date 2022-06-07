@@ -7,7 +7,6 @@
 
 import * as Asana from 'asana';
 import { cli } from './cli.js';
-import { cacheFetch, cacheStore } from './alfred/cache.js'; // TODO clean up
 import { log } from './alfred/logger.js'; // TODO clean up
 
 let fetchedClient: Asana.Client | null = null;
@@ -67,11 +66,14 @@ export function findGid<T extends Asana.resources.Resource>(
 let fetchedWorkspaceGid: string | null = null;
 
 export const fetchWorkspaceGid = async () => {
-  const config = cli().config();
+  const c = cli();
+  const config = c.config();
+  const cache = c.cache();
+
   if (fetchedWorkspaceGid != null) {
     return fetchedWorkspaceGid;
   }
-  fetchedWorkspaceGid = await cacheFetch('workspaceGid', 'string');
+  fetchedWorkspaceGid = await cache.cacheFetch('workspaceGid', 'string');
   if (fetchedWorkspaceGid != null) {
     return fetchedWorkspaceGid;
   }
@@ -82,7 +84,7 @@ export const fetchWorkspaceGid = async () => {
   if (fetchedWorkspaceGid == null) {
     throw new Error('Could not find workspace GID!');
   }
-  cacheStore('workspaceGid', fetchedWorkspaceGid);
+  cache.cacheStore('workspaceGid', fetchedWorkspaceGid);
 
   return fetchedWorkspaceGid;
 };

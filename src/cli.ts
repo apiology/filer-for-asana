@@ -1,7 +1,10 @@
+import Cache from './cache.js';
 import Config from './config.js';
 
 export abstract class Cli {
   abstract config(): Config;
+
+  abstract cache(): Cache;
 }
 
 let theCli: Cli | null = null;
