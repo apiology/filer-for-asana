@@ -7,7 +7,6 @@
 
 import * as Asana from 'asana';
 import { cli } from './cli.js';
-import { log } from './alfred/logger.js'; // TODO clean up
 
 let fetchedClient: Asana.Client | null = null;
 
@@ -31,6 +30,7 @@ export function findGid<T extends Asana.resources.Resource>(
   resourceList: Asana.resources.ResourceList<T>,
   isCorrectResource: (resource: T) => boolean
 ) {
+  const logger = cli().logger();
   return new Promise<string | null>((resolve, reject) => {
     // If I had esnext.asynciterable in
     // tsconfig.json#compilerOptions.lib, and if node-asana's
@@ -53,7 +53,7 @@ export function findGid<T extends Asana.resources.Resource>(
     const stream = resourceList.stream();
     stream.on('data', (resource: T): void => {
       if (isCorrectResource(resource)) {
-        log(`Found ${resource.gid}`);
+        logger.log(`Found ${resource.gid}`);
         resolve(resource.gid);
       }
     });

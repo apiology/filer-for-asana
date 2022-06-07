@@ -6,9 +6,9 @@
 
 import { cli } from './cli.js';
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
-import { log } from './alfred/logger.js';
+import AlfredLogger from './alfred/alfred-logger.js'; // TODO
 
-export const logSuccess = (result: string | object): void => log('Upvoted task:', result);
+export const logSuccess = (result: string | object): void => new AlfredLogger().log('Upvoted task:', result);
 
 export type Suggestion = {
   url: string
@@ -17,7 +17,7 @@ export type Suggestion = {
 }
 
 export const pullSuggestions = async (text: string): Promise<Suggestion[]> => {
-  log(`Got text as [${text}]`);
+  new AlfredLogger().log(`Got text as [${text}]`); // TODO
   const config = cli().config();
   const workspaceName = await config.fetchWorkspaceName();
   const description = `File "${text}" in workspace ${workspaceName}`;

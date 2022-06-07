@@ -1,5 +1,6 @@
 import AlfredCache from './alfred-cache.js';
 import AlfredConfig from './alfred-config.js';
+import AlfredLogger from './alfred-logger.js';
 
 // needed to create virtual functions implementing an abstract class
 // for TypeScript
@@ -12,5 +13,9 @@ export default class AlfredCli {
 
   cache() {
     return new AlfredCache();
+  }
+
+  logger() {
+    return new AlfredLogger();
   }
 }
