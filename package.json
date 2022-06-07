@@ -42,6 +42,7 @@
   },
   "_dependenciesComments": "buffer, process, stream-browserify, url and util are node polyfills needed by asana library",
   "dependencies": {
+    "alfy": "^1.0.0",
     "asana": "^0.18.5",
     "buffer": "^6.0.3",
     "process": "^0.11.10",
