@@ -1,6 +1,10 @@
 import alfy, { ScriptFilterItem } from 'alfy';
 import { pullSuggestions } from '../filer-for-asana.js';
 import { isString } from '../types.js';
+import AlfredCli from './alfred-cli.js';
+import { setCli } from '../cli.js';
+
+setCli(new AlfredCli());
 
 const run = async () => {
   let items: ScriptFilterItem[];

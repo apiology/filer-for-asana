@@ -1,7 +1,7 @@
 {
   "_where_i_got_this_from": "https://webpack.js.org/guides/typescript/",
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "./extension-dist/",
     "strict": true,
     "module": "node16",
     "target": "es2015",

@@ -1,9 +1,13 @@
+import path from 'path';
 import webpack from 'webpack';
 import { createRequire } from 'module';
 import CopyPlugin from 'copy-webpack-plugin';
 import ResolveTypeScriptPlugin from 'resolve-typescript-plugin';
+import { fileURLToPath } from 'url';
 
 const require = createRequire(import.meta.url);
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 export default {
   entry: {
@@ -43,6 +47,7 @@ export default {
   },
   mode: 'development', // override with webpack --mode=production on CLI builds
   output: {
+    path: path.resolve(dirname, 'extension-dist'),
     filename: '[name].js',
   },
   // 'inline-source-map' is suggested by https://webpack.js.org/guides/typescript/

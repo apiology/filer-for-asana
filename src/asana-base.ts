@@ -6,17 +6,18 @@
  */
 
 import * as Asana from 'asana';
-import { fetchAsanaAccessToken, fetchWorkspaceName } from './alfred/config.js'; // TODO clean up
+import { cli } from './cli.js';
 import { cacheFetch, cacheStore } from './alfred/cache.js'; // TODO clean up
 import { log } from './alfred/logger.js'; // TODO clean up
 
 let fetchedClient: Asana.Client | null = null;
 
 export const fetchClient = async () => {
+  const config = cli().config();
   if (fetchedClient != null) {
     return fetchedClient;
   }
-  const asanaAccessToken = await fetchAsanaAccessToken();
+  const asanaAccessToken = await config.fetchAsanaAccessToken();
 
   const clientOptions: Asana.ClientOptions = {
     defaultHeaders: {
@@ -66,6 +67,7 @@ export function findGid<T extends Asana.resources.Resource>(
 let fetchedWorkspaceGid: string | null = null;
 
 export const fetchWorkspaceGid = async () => {
+  const config = cli().config();
   if (fetchedWorkspaceGid != null) {
     return fetchedWorkspaceGid;
   }
@@ -75,7 +77,7 @@ export const fetchWorkspaceGid = async () => {
   }
   const client = await fetchClient();
   const workspaces = await client.workspaces.getWorkspaces();
-  const workspaceName = await fetchWorkspaceName();
+  const workspaceName = await config.fetchWorkspaceName();
   fetchedWorkspaceGid = await findGid(workspaces, (workspace) => workspace.name === workspaceName);
   if (fetchedWorkspaceGid == null) {
     throw new Error('Could not find workspace GID!');

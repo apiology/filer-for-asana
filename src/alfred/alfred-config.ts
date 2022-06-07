@@ -8,6 +8,8 @@ const fetchConfigString = (envVarName: string) => {
   return value;
 };
 
-export const fetchAsanaAccessToken = async () => fetchConfigString('asana_access_key');
+export default class AlfredConfig {
+  fetchAsanaAccessToken = async () => fetchConfigString('asana_access_key');
 
-export const fetchWorkspaceName = async (): Promise<string> => fetchConfigString('workspace_name');
+  fetchWorkspaceName = async (): Promise<string> => fetchConfigString('workspace_name');
+}
