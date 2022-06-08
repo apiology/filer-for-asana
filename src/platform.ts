@@ -14,7 +14,7 @@ let thePlatform: Platform | null = null;
 
 export const platform = (): Platform => {
   if (thePlatform == null) {
-    throw Error('Please call setCli() before use');
+    throw Error('Please call setPlatform() before use');
   }
   return thePlatform;
 };

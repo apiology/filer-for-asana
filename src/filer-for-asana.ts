@@ -19,9 +19,9 @@ export type Suggestion = {
 }
 
 export const pullSuggestions = async (text: string): Promise<Suggestion[]> => {
-  const c = platform();
-  const logger = c.logger();
-  const config = c.config();
+  const p = platform();
+  const logger = p.logger();
+  const config = p.config();
   logger.log(`Got text as [${text}]`);
   const workspaceName = await config.fetchWorkspaceName();
   const description = `File "${text}" in workspace ${workspaceName}`;
