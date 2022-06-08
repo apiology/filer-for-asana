@@ -7,23 +7,7 @@
 
 import * as Asana from 'asana';
 import { platform } from './platform.js';
-import { escapeHTML } from './chrome-extension/omnibox.js';
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
-
-export const formatTask = (task: Asana.resources.Tasks.Type) => {
-  const project = task.memberships[0]?.project;
-
-  let membership = '';
-
-  if (task.parent != null) {
-    membership += ` / ${escapeHTML(task.parent.name)}`;
-  }
-  if (project != null) {
-    membership += ` <dim>${project.name}</dim>`;
-  }
-
-  return `${escapeHTML(task.name)}${membership}`;
-};
 
 export const pullResult = async (text: string) => {
   const query: Asana.resources.Typeahead.TypeaheadParams = {
