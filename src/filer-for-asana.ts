@@ -24,7 +24,7 @@ export const pullSuggestions = async (text: string): Promise<Suggestion[]> => {
   const config = p.config();
   logger.log(`Got text as [${text}]`);
   const workspaceName = await config.fetchWorkspaceName();
-  const description = `File ${text} in workspace ${workspaceName}`;
+  const description = `File "${text}" in workspace ${workspaceName}`;
   const url = `filer-for-asana:${encodeURIComponent(text)}`;
   return [
     {
