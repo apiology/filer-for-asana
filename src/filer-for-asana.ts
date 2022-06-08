@@ -4,20 +4,33 @@
  * Chrome extension which quickly creates Asana tasks from the Chrome Omnibox.
  */
 
-import { escapeHTML } from './omnibox.js';
-import { fetchWorkspaceName } from './config.js';
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
+import { platform } from './platform.js';
 
-export const logSuccess = (result: string | object): void => console.log('Upvoted task:', result);
+export const logSuccess = (result: string | object): void => {
+  const logger = platform().logger();
+  logger.log('Upvoted task:', result);
+};
 
-export const pullOmniboxSuggestions = async (text: string) => {
-  const workspaceName = await fetchWorkspaceName();
-  console.log(`Got text as [${text}]`);
-  const content = `filer-for-asana:${encodeURIComponent(text)}`;
+export type Suggestion = {
+  url: string
+  text: string;
+  description: string;
+}
+
+export const pullSuggestions = async (text: string): Promise<Suggestion[]> => {
+  const p = platform();
+  const logger = p.logger();
+  const config = p.config();
+  logger.log(`Got text as [${text}]`);
+  const workspaceName = await config.fetchWorkspaceName();
+  const description = `File ${text} in workspace ${workspaceName}`;
+  const url = `filer-for-asana:${encodeURIComponent(text)}`;
   return [
     {
-      content,
-      description: escapeHTML(`File ${text} in workspace ${workspaceName}`),
+      url,
+      text,
+      description,
     },
   ];
 };
