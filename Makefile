@@ -30,6 +30,8 @@ build: build-alfy build-chrome-extension
 
 default: build package quality ## build and package up for both Alfred and the Chrome Extension
 
+package: package-chrome-extension
+
 package-chrome-extension: build-chrome-extension
 	cd extension-dist && zip -r ../package.zip .
 
