@@ -6,7 +6,8 @@
  */
 
 import * as Asana from 'asana';
-import { escapeHTML } from './omnibox.js';
+import { platform } from './platform.js';
+import { escapeHTML } from './chrome-extension/omnibox.js';
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
 
 export const formatTask = (task: Asana.resources.Tasks.Type) => {
@@ -32,8 +33,9 @@ export const pullResult = async (text: string) => {
     opt_fields: ['name', 'completed', 'parent.name', 'custom_fields.gid', 'custom_fields.number_value', 'memberships.project.name'],
   };
   const workspaceGid = await fetchWorkspaceGid();
+  const logger = platform().logger();
 
-  console.log('requesting typeahead with workspaceGid', workspaceGid,
+  logger.log('requesting typeahead with workspaceGid', workspaceGid,
     ' and query of ', query);
   chrome.omnibox.setDefaultSuggestion({
     description: `<dim>Searching for ${text}...</dim>`,

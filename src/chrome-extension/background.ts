@@ -8,9 +8,8 @@
 // https://github.com/GoogleChrome/chrome-extensions-samples/blob/1d8d137d20fad5972292377dc22498529d2a4039/api/omnibox/simple-example/background.js
 
 import * as _ from 'lodash';
-import {
-  actOnInputData, logSuccess, pullOmniboxSuggestions,
-} from './filer-for-asana.js';
+import { actOnInputData, logSuccess } from '../filer-for-asana.js';
+import { pullOmniboxSuggestions } from './omnibox.js';
 
 type SuggestFunction = (suggestResults: chrome.omnibox.SuggestResult[]) => void;
 

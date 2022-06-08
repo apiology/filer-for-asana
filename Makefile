@@ -28,8 +28,6 @@ build-chrome-extension: webpack
 
 build: build-alfy build-chrome-extension
 
-package: package-chrome-extension
-
 default: build package quality ## build and package up for both Alfred and the Chrome Extension
 
 package: package-chrome-extension
