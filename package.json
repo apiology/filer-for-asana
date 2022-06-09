@@ -1,5 +1,5 @@
 {
-  "name": "filer-for-asana",
+  "name": "alfred-filer-for-asana",
   "version": "0.1.0",
   "description": "Chrome extension which quickly creates Asana tasks from the Chrome Omnibox.",
   "private": true,
