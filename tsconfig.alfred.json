@@ -1,7 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDirs": ["src/common", "src/alfred"],
+    "skipLibCheck": true,
     "outDir": "./alfred-dist/"
-  }
+  },
+  "include": [
+    "src/asana.d.ts",
+    "src/alfred/alfred-suggest.ts",
+    "src/alfred/alfred-act.ts"
+  ]
 }
