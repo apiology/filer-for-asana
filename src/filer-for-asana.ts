@@ -1,7 +1,7 @@
 /**
  * filer-for-asana module.
  *
- * Chrome extension which quickly creates Asana tasks from the Chrome Omnibox.
+ * Chrome extension which quickly creates Asana tasks from the Chrome Omnibox and Alfred.
  */
 
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
