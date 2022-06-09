@@ -1,6 +1,6 @@
 {
   "name": "Filer for Asana",
-  "description": "Chrome extension which quickly creates Asana tasks from the Chrome Omnibox.",
+  "description": "Chrome extension which quickly creates Asana tasks from the Chrome Omnibox and Alfred.",
   "version": "0.1.0",
   "icons": {
     "16": "apiology-16x16.png",
