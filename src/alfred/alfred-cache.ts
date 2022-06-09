@@ -1,16 +1,14 @@
-import AlfredLogger from './alfred-logger.js';
+import alfy from 'alfy';
 
 export default class AlfredCache {
-  cacheFetch = async (key: string,
-    clazz: 'string'): Promise<string | null> => { // TODO: why is this returning string when another type could be requested?
-    const logger = new AlfredLogger();
-    logger.log(`Fetching config value ${key} of class ${clazz}`);
-    return null;
-  };
+  cacheFetch = async (key: string, clazz: 'string'): Promise<string | null> => {
+    if (clazz !== 'string') {
+      throw new Error(`I do not know how to cache items of class ${clazz}`);
+    }
+    return alfy.cache.get(key);
+  }
 
   cacheStore = async (key: string, value: string): Promise<void> => {
-    const logger = new AlfredLogger();
-    logger.log(`Storing config value ${key} with value ${value}`);
-    // do nothing for now // TODO: implement
+    alfy.cache.set(key, value);
   };
 }
