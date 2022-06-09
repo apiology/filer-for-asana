@@ -4,7 +4,7 @@
 
 WARNING: This is not ready for use yet!
 
-Chrome extension which quickly creates Asana tasks from the Chrome Omnibox.
+Chrome extension which quickly creates Asana tasks from the Chrome Omnibox and Alfred.
 
 ## Using
 
