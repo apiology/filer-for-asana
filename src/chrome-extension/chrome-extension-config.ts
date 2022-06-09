@@ -52,7 +52,4 @@ export default class ChromeExtensionConfig {
   fetchAsanaAccessToken = async () => fetchConfig('asanaAccessToken', 'Asana access token', 'string');
 
   fetchWorkspaceName = async () => fetchConfig('workspace', 'workspace name', 'string');
-  // fetchSomeConfigItem = async () => fetchConfig('mumble',
-  //                                               'example config item',
-  //                                               'string');
 }
