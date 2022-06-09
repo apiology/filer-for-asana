@@ -7,7 +7,7 @@
   },
   "include": [
     "src/asana.d.ts",
-    "src/alfred/alfred.ts",
-    "src/alfred/file.ts"
+    "src/alfred/alfred-suggest.ts",
+    "src/alfred/alfred-act.ts"
   ]
 }
