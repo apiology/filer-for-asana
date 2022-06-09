@@ -23,7 +23,7 @@ Chrome extension which quickly creates Asana tasks from the Chrome Omnibox and A
 Not created, maintained, reviewed, approved, or endorsed by Asana, Inc.
 
 
-## Installing
+## Installing Chrome Extension
 
 This isn't in the Chrome App Store, so welcome to the Chrome Extension
 development experience!
@@ -34,6 +34,12 @@ development experience!
 3. Make sure 'Developer mode' is flipped on in the upper right.
 4. Click the 'Load unpacked' button.
 5. Choose the [dist/chrome-extension](./dist/chrome-extension) directory
+
+## Installing Alfred workflow
+
+1. `npm install -g filer-for-asana`
+2. Alfred | Workflows | File Asana task | Configure workflow and
+   variables icon | configure workspace name and access key.
 
 ## Contributions
 
