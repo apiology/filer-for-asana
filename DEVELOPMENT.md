@@ -16,6 +16,22 @@ quality checks.  `bundle exec overcommit --install` will install it.
 This project uses direnv to manage environment variables used during
 development.  See the `.envrc` file for detail.
 
+## Run Chrome extension from local checkout
+
+1. Run 'make' to create the bundle with webpack, or 'make start' to
+   start webpack in watch mode.
+2. Go to [chrome://extensions/](chrome://extensions/)
+3. Make sure 'Developer mode' is flipped on in the upper right.
+4. Click the 'Load unpacked' button.
+5. Choose the [dist/chrome-extension](./dist/chrome-extension) directory
+
+## Run Alfred workflow from local checkout
+
+1. `npx alfy-init`
+2. You should now see the worfklow show up in Alfred's configuration.
+3. Alfred | Workflows | File Asana task | Configure workflow and
+   variables icon | configure workspace name and access key.
+
 ## Interactive development with Asana API
 
 1. Save off the configured Asana client object in asana-base.ts#fetchClient():
