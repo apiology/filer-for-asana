@@ -16,6 +16,22 @@ quality checks.  `bundle exec overcommit --install` will install it.
 This project uses direnv to manage environment variables used during
 development.  See the `.envrc` file for detail.
 
+## Run Chrome extension from local checkout
+
+1. Run 'make' to create the bundle with webpack, or 'make start' to
+   start webpack in watch mode.
+2. Go to [chrome://extensions/](chrome://extensions/)
+3. Make sure 'Developer mode' is flipped on in the upper right.
+4. Click the 'Load unpacked' button.
+5. Choose the [dist/chrome-extension](./dist/chrome-extension) directory
+
+## Run Alfred workflow from local checkout
+
+1. `npx alfy-init`
+2. You should now see the worfklow show up in Alfred's configuration.
+3. Alfred | Workflows | File Asana task | Configure workflow and
+   variables icon | configure workspace name and access key.
+
 ## Interactive development with Asana API
 
 1. Save off the configured Asana client object in asana-base.ts#fetchClient():
@@ -38,7 +54,7 @@ development.  See the `.envrc` file for detail.
 ## Initial release to Chrome Web Store
 
 1. `make clean && make`
-1. Load resulting `extension-dist` directory into local [Chrome](chrome://extensions/) and test.
+1. Load resulting `dist/chrome-extension` directory into local [Chrome](chrome://extensions/) and test.
 1. Finalize [promotional image](docs/filer-for-asana.paint).
 1. Stage the .paint file in git.
 1. File | Save As... | png | `filer-for-asana-440x280.png` | Save
@@ -81,7 +97,7 @@ development.  See the `.envrc` file for detail.
 1. Update screenshots in `docs/` for any new features
 1. Update [README.md](./README.md) with new screenshots
 1. PR screenshot updates in
-1. PR a bump to the version in `static/manifest.json`
+1. PR a bump to the version in `static/chrome-extension/manifest.json`
 1. `git checkout main && git pull`
 1. `make clean && make`
 1. Update [package.zip](./package.zip) in [developer dashboard](https://chrome.google.com/u/1/webstore/devconsole/d34ba2e8-8b5a-4417-889e-4047c35522d0) as `apiology-cws` user.
