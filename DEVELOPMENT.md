@@ -51,6 +51,12 @@ development.  See the `.envrc` file for detail.
    stories = await client.stories.getStoriesForTask('1234);
    ```
 
+## Publishing Alfred package to npm
+
+1. `update_type= # patch/minor/major
+2. `npm version ${update_type:?}`
+3. `npm publish`
+
 ## Initial release to Chrome Web Store
 
 1. `make clean && make`
