@@ -18,10 +18,10 @@ Quickly creates Asana tasks from the Chrome Omnibox and Alfred.
    Details | Extension options.
 1. Paste in your personal access token.
 1. Provide the rest of the configuration and hit 'Save'
+
 ## Legal
 
 Not created, maintained, reviewed, approved, or endorsed by Asana, Inc.
-
 
 ## Installing Chrome Extension
 
