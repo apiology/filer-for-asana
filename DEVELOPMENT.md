@@ -53,9 +53,10 @@ development.  See the `.envrc` file for detail.
 
 ## Publishing Alfred package to npm
 
-1. `update_type= # patch/minor/major
-2. `npm version ${update_type:?}`
-3. `npm publish`
+1. `git checkout info.plist`
+2. `update_type= # patch/minor/major
+3. `npm version ${update_type:?}`
+4. `npm publish`
 
 ## Initial release to Chrome Web Store
 
