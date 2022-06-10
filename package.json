@@ -1,6 +1,6 @@
 {
   "name": "alfred-filer-for-asana",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Quickly creates Asana tasks from the Chrome Omnibox and Alfred.",
   "private": false,
   "scripts": {
@@ -10,7 +10,10 @@
     "postinstall": "alfy-init",
     "preuninstall": "alfy-cleanup"
   },
-  "files": ["info.plist", "dist/alfred/*.js"],
+  "files": [
+    "info.plist",
+    "dist/alfred/*.js"
+  ],
   "type": "module",
   "repository": {
     "type": "git",
