@@ -56,7 +56,8 @@ development.  See the `.envrc` file for detail.
 1. `git stash push info.plist`
 2. `update_type= # patch/minor/major
 3. `npm version ${update_type:?}`
-4. `npm publish`
+4. `git push`
+5. `npm publish`
 
 ## Initial release to Chrome Web Store
 
