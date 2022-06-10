@@ -51,6 +51,15 @@ development.  See the `.envrc` file for detail.
    stories = await client.stories.getStoriesForTask('1234);
    ```
 
+## Publishing Alfred package to npm
+
+1. `git stash push info.plist`
+2. `update_type= # patch/minor/major`
+3. `npm version ${update_type:?}`
+4. `git push`
+5. `npm publish`
+6. `npm install -g alfred-filer-for-asana --upgrade`
+
 ## Initial release to Chrome Web Store
 
 1. `make clean && make`

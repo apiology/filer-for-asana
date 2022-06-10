@@ -29,7 +29,7 @@ This isn't in the Chrome App Store - see [DEVELOPMENT.md](./DEVELOPMENT.md) for 
 
 ## Installing Alfred workflow
 
-1. `npm install -g filer-for-asana`
+1. `npm install -g alfred-filer-for-asana`
 2. Alfred | Workflows | File Asana task | Configure workflow and
    variables icon | configure workspace name and access key.
 
