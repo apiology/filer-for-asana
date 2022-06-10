@@ -12,7 +12,7 @@
   },
   "files": [
     "info.plist",
-    "dist/alfred/*.js"
+    "dist/alfred/**/*.js"
   ],
   "type": "module",
   "repository": {
