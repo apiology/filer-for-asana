@@ -9,7 +9,7 @@
     "multicli_keyword": "fa",
     "open_source_license": "MIT license",
     "project_name": "Filer for Asana",
-    "project_short_description": "Chrome extension which quickly creates Asana tasks from the Chrome Omnibox and Alfred.",
+    "project_short_description": "Quickly creates Asana tasks from the Chrome Omnibox and Alfred.",
     "project_slug": "filer-for-asana",
     "type_of_github_repo": "private",
     "version": "0.1.0"

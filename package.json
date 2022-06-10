@@ -1,7 +1,7 @@
 {
   "name": "alfred-filer-for-asana",
   "version": "0.1.0",
-  "description": "Chrome extension which quickly creates Asana tasks from the Chrome Omnibox and Alfred.",
+  "description": "Quickly creates Asana tasks from the Chrome Omnibox and Alfred.",
   "private": true,
   "scripts": {
     "start": "webpack --mode=development --watch",
@@ -17,7 +17,11 @@
     "chrome-extension",
     "asana"
   ],
-  "author": "Vince Broz <vince@broz.cc>",
+  "author": {
+    "name": "Vince Broz",
+    "email": "vince@broz.cc",
+    "url": "https://www.github.com/apiology/"
+  },
   "license": "MIT license",
   "bugs": {
     "url": "https://github.com/apiology/filer-for-asana/issues"
