@@ -4,11 +4,11 @@
 
 WARNING: This is not ready for use yet!
 
-Chrome extension which quickly creates Asana tasks from the Chrome Omnibox and Alfred.
+Quickly creates Asana tasks from the Chrome Omnibox and Alfred.
 
 ## Using
 
-## Configuration
+## Chrome Extension Configuration
 
 1. Create a new "Personal access token" in
    [Asana](https://app.asana.com/0/my-apps)
@@ -23,17 +23,15 @@ Chrome extension which quickly creates Asana tasks from the Chrome Omnibox and A
 Not created, maintained, reviewed, approved, or endorsed by Asana, Inc.
 
 
-## Installing
+## Installing Chrome Extension
 
-This isn't in the Chrome App Store, so welcome to the Chrome Extension
-development experience!
+This isn't in the Chrome App Store - see [DEVELOPMENT.md](./DEVELOPMENT.md) for how to run from a local checkout.
 
-1. Run 'make' to create the bundle with webpack, or 'make start' to
-   start webpack in watch mode.
-2. Go to [chrome://extensions/](chrome://extensions/)
-3. Make sure 'Developer mode' is flipped on in the upper right.
-4. Click the 'Load unpacked' button.
-5. Choose the [extension-dist](./extension-dist) directory
+## Installing Alfred workflow
+
+1. `npm install -g filer-for-asana`
+2. Alfred | Workflows | File Asana task | Configure workflow and
+   variables icon | configure workspace name and access key.
 
 ## Contributions
 
