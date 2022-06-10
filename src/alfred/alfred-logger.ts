@@ -1,15 +1,19 @@
 export default class AlfredLogger {
+  // logging is not possible in alfy, as stdout would interfere with
+  // the JSON output from alfy, and alfy interprets anything written
+  // to stderr as something it should create a separate JSON output
+  // about, which is not helpful when we are trying to create a
+  // success output.
+
+  // See alfy's issue 86
+
   /* eslint-disable @typescript-eslint/no-explicit-any */
   /* eslint-disable @typescript-eslint/no-unused-vars */
-  log = (message?: any, ...optionalParams: any[]) => {
-    // prefer stderr on node, as logging messages shouldn't go to stdout
-    // where functional output (e.g. JSON) might be going
-    // console.error(message, ...optionalParams);
-  };
+  /* eslint-disable @typescript-eslint/no-empty-function */
+  log = (message?: any, ...optionalParams: any[]) => { };
+
+  debug = (s: string): void => { };
   /* eslint-enable @typescript-eslint/no-explicit-any */
   /* eslint-enable @typescript-eslint/no-unused-vars */
-
-  debug = (s: string): void => {
-    console.debug(s);
-  };
+  /* eslint-enable @typescript-eslint/no-empty-function */
 }
