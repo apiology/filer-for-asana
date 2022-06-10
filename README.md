@@ -4,7 +4,7 @@
 
 WARNING: This is not ready for use yet!
 
-Chrome extension which quickly creates Asana tasks from the Chrome Omnibox and Alfred.
+Quickly creates Asana tasks from the Chrome Omnibox and Alfred.
 
 ## Using
 
@@ -25,7 +25,7 @@ Not created, maintained, reviewed, approved, or endorsed by Asana, Inc.
 
 ## Installing Chrome Extension
 
-This isn't in the Chrome App Store - see [./DEVELOPMENT.md] for how to run from a local checkout.
+This isn't in the Chrome App Store - see [DEVELOPMENT.md](./DEVELOPMENT.md) for how to run from a local checkout.
 
 ## Installing Alfred workflow
 
