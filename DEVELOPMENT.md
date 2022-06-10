@@ -58,6 +58,7 @@ development.  See the `.envrc` file for detail.
 3. `npm version ${update_type:?}`
 4. `git push`
 5. `npm publish`
+6. `npm install -g alfred-filer-for-asana --upgrade`
 
 ## Initial release to Chrome Web Store
 
