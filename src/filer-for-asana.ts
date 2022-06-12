@@ -9,7 +9,7 @@ import { platform } from './platform.js';
 
 export const logSuccess = (result: string | object): void => {
   const logger = platform().logger();
-  logger.log('Upvoted task:', result);
+  logger.log('Acted:', result);
 };
 
 export type Suggestion = {
