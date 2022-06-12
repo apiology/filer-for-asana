@@ -36,7 +36,7 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string></string>
+	<string>Vince Broz</string>
 	<key>description</key>
 	<string></string>
 	<key>disabled</key>
@@ -98,7 +98,7 @@ set -eu
 				<key>queuemode</key>
 				<integer>2</integer>
 				<key>runningsubtext</key>
-				<string></string>
+				<string>Running Filer for Asana...</string>
 				<key>script</key>
 				<string>query=$1
 
@@ -111,7 +111,7 @@ set -eu
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string></string>
+				<string>Enter text for Filer for Asana</string>
 				<key>title</key>
 				<string>Filer for Asana</string>
 				<key>type</key>
@@ -189,6 +189,6 @@ set -eu
 	<key>version</key>
 	<string></string>
 	<key>webaddress</key>
-	<string></string>
+	<string>https://github.com/apiology/filer-for-asana</string>
 </dict>
 </plist>
