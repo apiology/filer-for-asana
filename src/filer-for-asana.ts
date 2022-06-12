@@ -1,7 +1,7 @@
 /**
  * filer-for-asana module.
  *
- * Quickly creates Asana tasks from the Chrome Omnibox and Alfred.
+ * Quickly creates Asana tasks from the Chrome Omnibox and Alfred workflows.
  */
 
 import { platform } from './platform.js';

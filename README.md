@@ -4,7 +4,7 @@
 
 WARNING: This is not ready for use yet!
 
-Quickly creates Asana tasks from the Chrome Omnibox and Alfred.
+Quickly creates Asana tasks from the Chrome Omnibox and Alfred workflows.
 
 ## Using Chrome Extension
 
