@@ -27,10 +27,9 @@ development.  See the `.envrc` file for detail.
 
 ## Run Alfred workflow from local checkout
 
-1. `npx alfy-init`
-2. You should now see the worfklow show up in Alfred's configuration.
-3. Alfred | Workflows | File Asana task | Configure workflow and
-   variables icon | configure workspace name and access key.
+1. `make`
+2. `yarn install`  (only needed once)
+3. You should now see the worfklow show up in Alfred's configuration.
 
 ## Interactive development with Asana API
 
@@ -51,14 +50,49 @@ development.  See the `.envrc` file for detail.
    stories = await client.stories.getStoriesForTask('1234);
    ```
 
-## Publishing Alfred package to npm
+## Initial release of Alfred package to npm
 
-1. `git stash push info.plist`
-2. `update_type= # patch/minor/major`
-3. `npm version ${update_type:?}`
-4. `git push`
-5. `npm publish`
-6. `npm install -g alfred-filer-for-asana --upgrade`
+Walk through these steps:
+
+```sh
+git checkout main
+git pull
+git stash
+npm publish
+alfy-cleanup
+npm install -g alfred-filer-for-asana --upgrade
+```
+
+Drop the following markdown into README.md in the 'Installing Alfred workflow' section.
+
+```markdown
+1. `npm install -g alfred-filer-for-asana`
+2. Alfred | Workflows | File Asana task | Configure workflow and
+   variables icon | configure workspace name and access key.
+```
+
+Remove this section.
+
+## Releasing Alfred package to npm
+
+Related backlog tasks:
+
+* Do npm Alfred release of cookiecutter-multicli projects in CircleCI (after other tests pass)
+
+```sh
+git checkout main
+git pull
+git stash
+last_released_version=$(npm version --json | jq -r '."alfred-filer-for-asana"')
+git log ${last_released_version:?}..
+update_type= # patch/minor/major
+npm version ${update_type:?}
+git push
+git push --tags
+npm publish
+alfy-cleanup
+npm install -g alfred-filer-for-asana --upgrade
+```
 
 ## Initial release to Chrome Web Store
 
@@ -97,7 +131,7 @@ development.  See the `.envrc` file for detail.
 1. Submit for review
 1. Wait for approval
 1. Update README.md with CWS icon linking to listing after the first paragraph - example: `[![Available in the Chrome Web Store](https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/tbyBjqi7Zu733AAKA5n4.png)](WEBSTORE LINK HERE)`
-1. Move 'Installing' in README.md to 'Installing local version' in DEVELOPMENT.md
+1. Replace 'Installing Chrome Extension' in README.md with the CWS icon.
 1. Update README.md with screenshots - example: `<img src="./docs/screenshot-1.png" alt="screenshot showing Asana task description and repeating above keystrokes" height="400"/>`
 1. Drop this section
 

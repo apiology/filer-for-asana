@@ -2,7 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "skipLibCheck": true,
-    "outDir": "./dist/alfred/"
+    "outDir": "./dist/alfred/",
+    "lib": ["es2015"]
   },
   "include": [
     "src/asana.d.ts",
