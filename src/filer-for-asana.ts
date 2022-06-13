@@ -39,13 +39,8 @@ export const actOnInputData = async (text: string) => {
   const client = await fetchClient();
   const workspaceGid = await fetchWorkspaceGid();
   const assignee = await client.users.me();
-
-  let parsedText = text;
-  if (text.startsWith('filer-for-asana:')) {
-    const url = new URL(text);
-    parsedText = decodeURIComponent(url.pathname);
-  }
-
+  const url = new URL(text);
+  const parsedText = decodeURIComponent(url.pathname);
   const out = await client.tasks.create({
     workspace: workspaceGid,
     assignee: assignee.gid,
