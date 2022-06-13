@@ -21,14 +21,20 @@ type SuggestFunction = (suggestResults: chrome.omnibox.SuggestResult[]) => void;
 
 const populateOmnibox = async (text: string, suggest: SuggestFunction) => {
   const suggestions = await pullOmniboxSuggestions(text);
-  if (suggestions.length === 1) {
-    chrome.omnibox.setDefaultSuggestion({ description: suggestions[0].description });
-  } else {
-    suggest(suggestions);
-    console.log(`${suggestions.length} suggestions from ${text}:`, suggestions);
-    const description = `<dim>${suggestions.length} results for ${text}:</dim>`;
-    chrome.omnibox.setDefaultSuggestion({ description });
+
+  if (suggestions.length <= 0) {
+    chrome.omnibox.setDefaultSuggestion({
+      description: 'No results found',
+    });
+
+    return;
   }
+
+  chrome.omnibox.setDefaultSuggestion({
+    description: suggestions[0].description,
+  });
+  suggest(suggestions.slice(1, -1));
+  console.log(`${suggestions.length} suggestions from ${text}: `, suggestions);
 };
 
 const pullAndReportSuggestions = async (text: string, suggest: SuggestFunction) => {
@@ -40,19 +46,21 @@ const pullAndReportSuggestions = async (text: string, suggest: SuggestFunction) 
   }
 };
 
-const pullAndReportSuggestionsDebounced = _.debounce(pullAndReportSuggestions,
-  500);
-
-export const omniboxInputChangedListener = (text: string, suggest: SuggestFunction) => {
-  chrome.omnibox.setDefaultSuggestion({
-    description: `<dim>Waiting for results from ${text}...</dim>`,
-  });
-  return pullAndReportSuggestionsDebounced(text, suggest);
-};
+export const omniboxInputChangedListener = _.debounce(pullAndReportSuggestions, 500);
 
 export const omniboxInputEnteredListener = async (inputData: string) => {
   try {
-    const out = await actOnInputData(inputData);
+    let urlText = inputData;
+    if (!inputData.startsWith('filer-for-asana:')) {
+      // all we got was the default suggestion, so we have to do search
+      // again
+      const suggestions = await pullSuggestions(inputData);
+      if (suggestions.length === 0) {
+        throw new Error(`No results for "${inputData}"`);
+      }
+      urlText = suggestions[0].url;
+    }
+    const out = await actOnInputData(urlText);
     logSuccess(out);
   } catch (err) {
     alert(`Failed to process ${inputData}: ${err}`);
