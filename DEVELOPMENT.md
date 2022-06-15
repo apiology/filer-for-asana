@@ -71,6 +71,15 @@ alfy-cleanup
 npm install -g alfred-filer-for-asana --upgrade
 ```
 
+Alfred | Filer for Asana | right click | Export ... | save to this directory
+
+```
+new_release=$(npm version --json | jq -r '."alfred-filer-for-asana"')
+gh release create v${new_release:?} 'Filer for Asana.alfredworkflow'
+```
+
+Download file.  Install.
+
 ## Initial release to Chrome Web Store
 
 1. `make clean && make`
