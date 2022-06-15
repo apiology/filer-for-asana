@@ -77,14 +77,8 @@ gh release create v${new_release:?} 'Filer for Asana.alfredworkflow'
 Drop the following markdown into README.md in the 'Installing Alfred workflow' section.
 
 ```markdown
-Either download and double click the latest release's [.alfredworkflow
-file](https://github.com/apiology/filer-for-asana/releases)
-or install via npm with `npm install -g
-alfred-filer-for-asana`
-
-Once down, configure: Alfred | Workflows |
-Filer for Asana | Configure workflow and variables icon
-| configure workspace name and access key.
+Download and double click the latest release's [.alfredworkflow
+file](https://github.com/apiology/filer-for-asana/releases).
 ```
 
 Remove this section.
