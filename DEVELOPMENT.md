@@ -50,11 +50,13 @@ development.  See the `.envrc` file for detail.
    stories = await client.stories.getStoriesForTask('1234);
    ```
 
-## Releasing Alfred package to npm
+## Releasing Alfred package
 
 Related backlog tasks:
 
 * Do npm Alfred release of cookiecutter-multicli projects in CircleCI (after other tests pass)
+
+First, run these commands:
 
 ```sh
 git checkout main
@@ -71,7 +73,11 @@ alfy-cleanup
 npm install -g alfred-filer-for-asana --upgrade
 ```
 
-Alfred | Filer for Asana | right click | Export ... | save to this directory
+Then, load Alfred | Preferences | Workflows |
+Filer for Asana | right click | Export ... | Export | choose this
+directory | Export
+
+Once done, make a GitHub release with the exported file:
 
 ```
 new_release=$(npm version --json | jq -r '."alfred-filer-for-asana"')

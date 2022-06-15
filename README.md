@@ -18,13 +18,8 @@ This isn't in the Chrome App Store - see [DEVELOPMENT.md](./DEVELOPMENT.md) for 
 
 ## Installing Alfred workflow
 
-Either [download and double click on an .alfredworkflow
-file](https://github.com/apiology/filer-for-asana/releases) or install
-via npm with `npm install -g alfred-filer-for-asana`
-
-Once down, configure: Alfred | Workflows | File Asana task | Configure
-   workflow and variables icon | configure workspace name and access
-   key.
+Download and double click the latest release's [.alfredworkflow
+file](https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}/releases).
 
 ## Chrome Extension Configuration
 
