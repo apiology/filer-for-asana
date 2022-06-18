@@ -155,7 +155,7 @@ Download file.  Install.
 1. PR related changes in here
 1. Submit for review
 1. Wait for approval
-1. Update README.md with CWS icon linking to listing after the first paragraph - example: p`[![Available in the Chrome Web Store](https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/tbyBjqi7Zu733AAKA5n4.png)](WEBSTORE LINK HERE)`
+1. Update README.md with CWS icon linking to listing after the first paragraph - example: `[![Available in the Chrome Web Store](https://storage.googleapis.com/web-dev-uploads/image/WlD8wC6g8khYWPJUsQceQkhXSlv1/tbyBjqi7Zu733AAKA5n4.png)](WEBSTORE LINK HERE)`
 1. Replace 'Installing Chrome Extension' in README.md with the CWS icon.
 1. Update README.md with screenshots - example: `<img src="./docs/screenshot-1.png" alt="screenshot showing Asana task description and repeating above keystrokes" height="400"/>`
 1. Drop this section
