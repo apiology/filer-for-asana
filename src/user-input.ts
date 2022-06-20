@@ -28,8 +28,9 @@ const parseSection = (raw: string): {
   const index = raw.lastIndexOf('.');
   if (index !== -1) {
     const sectionText = raw.substring(index + 1)?.trim();
-    // Check to see if someone added a section hint after last period
-    if (!sectionText.includes('#')) {
+    const projectHintProvidedAfterwards = sectionText.includes('#');
+    const noTextProvided = sectionText.length === 0;
+    if (!projectHintProvidedAfterwards && !noTextProvided) {
       section = sectionText;
       rawMinusSection = raw.substring(0, index);
     }
