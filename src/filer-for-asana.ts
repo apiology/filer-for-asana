@@ -171,7 +171,7 @@ export const generateSuggestions = async (userInput: UserInput): Promise<Suggest
 
   // 2. add a suggestion for the raw text in case user mean '#' more literally
   const text = userInput.raw;
-  const description = `File "${text}" in workspace ${workspaceName} `;
+  const description = `File "${text}" in workspace ${workspaceName}`;
   const urlObject = new URL(`filer-for-asana:${encodeURIComponent(text)}`);
   const url = urlObject.href;
 
