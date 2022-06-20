@@ -6,6 +6,35 @@ export type Target = {
   section: Asana.resources.Sections.Type,
 }
 
+export function prioritizedMatchedSectionTargets<T extends { name: string }>(
+  sections: (T)[],
+  sectionName: string
+): T[] {
+  const targets = [];
+  for (const section of sections) {
+    if (section.name == null) {
+      throw Error('name not included in results!');
+    }
+    // if (section.name.toLowerCase().includes(sectionName.toLowerCase())) {
+    if (section.name.includes(sectionName)) {
+      targets.push(section);
+    }
+  }
+  // pick order in which to present
+  //
+  // ensure closest match (smallest section name used as a proxy) is first
+  targets.sort((a, b) => {
+    if (a.name == null) {
+      throw Error('name not included in results!');
+    }
+    if (b.name == null) {
+      throw Error('name not included in results!');
+    }
+    return a.name.length - b.name.length;
+  });
+  return targets;
+}
+
 export const addSectionsToTargets = async (
   projectGid: string,
   project: Asana.resources.Projects.Type | null,
@@ -17,24 +46,8 @@ export const addSectionsToTargets = async (
 
   // 1. add each section discovered via search
   if (sectionName != null) {
-    for (const section of sections.slice(1)) {
-      if (section.name == null) {
-        throw Error('name not included in results!');
-      }
-      if (section.name.includes(sectionName)) {
-        targets.push({ project, section });
-      }
-    }
-    // ensure closest match (smallest section name used as a proxy) is first
-    targets.sort((a, b) => {
-      if (a.section.name == null) {
-        throw Error('name not included in results!');
-      }
-      if (b.section.name == null) {
-        throw Error('name not included in results!');
-      }
-      return a.section.name.length - b.section.name.length;
-    });
+    const sectionTargets = prioritizedMatchedSectionTargets(sections.slice(1), sectionName);
+    targets.push(...sectionTargets.map((section) => ({ project, section })));
   }
   // 2. add default section at end of list
   targets.push({ project, section: sections[0] });
