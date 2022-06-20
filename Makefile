@@ -18,8 +18,11 @@ help:
 webpack: ## run webpack and tie together modules for use by browser
 	npx webpack
 
-start: ## run webpack continuously and watch files
-	npm start
+chrome-extension-start: ## run webpack continuously and watch files
+	npm run chrome-extension-start
+
+alfred-start: ## run tsc continuously and watch files
+	npm run alfred-start
 
 build-alfy:
 	npm run build-alfy
