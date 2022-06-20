@@ -70,6 +70,11 @@ git push
 git push --tags
 npm publish
 alfy-cleanup
+```
+
+Now, remove your current installation from Alfred on your machine.
+
+```sh
 npm install -g alfred-filer-for-asana --upgrade
 ```
 
@@ -77,14 +82,17 @@ Then, load Alfred | Preferences | Workflows |
 Filer for Asana | right click | Export ... | Export | choose this
 directory | Export
 
-Once done, make a GitHub release with the exported file:
+Once done, make a GitHub release with the exported file (do this in a
+new tab):
 
-```
+```sh
 new_release=$(npm version --json | jq -r '."alfred-filer-for-asana"')
 gh release create v${new_release:?} 'Filer for Asana.alfredworkflow'
 ```
 
-Download file.  Install.
+Remove your current installation again.
+
+open 'Filer for Asana.alfredworkflow'
 
 ## Initial release to Chrome Web Store
 

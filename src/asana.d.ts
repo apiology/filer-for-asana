@@ -1718,6 +1718,7 @@ declare module 'asana' {
             }
 
             // https://developers.asana.com/docs/create-a-task
+            // https://forum.asana.com/t/add-task-to-a-section-upon-creation-via-api-request/51957/5
             interface CreateParams {
                 approval_status?: string | undefined;
                 assignee?: string | undefined;
@@ -1737,6 +1738,10 @@ declare module 'asana' {
                 followers?: string[] | undefined; // create-only
                 html_notes?: string | undefined;
                 liked?: boolean | undefined;
+                memberships?: {
+                    project: string;
+                    section: string;
+                }[];
                 name?: string | undefined;
                 notes?: string | undefined;
                 parent?: string | undefined;
@@ -2227,6 +2232,7 @@ declare module 'asana' {
         namespace Sections {
             interface Type extends Resource {
                 created_at: string;
+                project?: Projects.Type;
             }
 
             interface SectionsParams {
@@ -2248,6 +2254,7 @@ declare module 'asana' {
              */
             findByProject(project: string | number, params?: Params, dispatchOptions?: any): Promise<Sections.Type[]>;
 
+            // https://developers.asana.com/docs/get-a-section
             /**
              * Returns the complete record for a single section.
              * @param {String|Number} section The section to get.
@@ -2830,7 +2837,7 @@ declare module 'asana' {
              * @param {Object} [dispatchOptions] Options, if any, to pass the dispatcher for the request
              * @return {Promise} The requested resource
              */
-            findByUser(user: number | string, params?: Params, dispatchOptions?: any): Promise<UserTaskLists.Type>;
+            findByUser(user: number | string, params?: Params & { workspace?: string }, dispatchOptions?: any): Promise<UserTaskLists.Type>;
 
             /**
              * Returns the full record for a user task list.
@@ -3163,9 +3170,29 @@ declare module 'asana' {
              */
             typeaheadForWorkspace(
                 workspaceGid: string,
-                params?: Typeahead.TypeaheadParams,
+                params?: Typeahead.TypeaheadParams & { resource_type: 'task' },
                 dispatchOptions?: any,
             ): Promise<ResourceList<Tasks.Type>>;
+            typeaheadForWorkspace(
+                workspaceGid: string,
+                params?: Typeahead.TypeaheadParams & { resource_type: 'project' },
+                dispatchOptions?: any,
+            ): Promise<ResourceList<Projects.Type>>;
+            // typeaheadForWorkspace(
+            //     workspaceGid: string,
+            //     params?: Typeahead.TypeaheadParams & { resource_type: 'portfolio' },
+            //     dispatchOptions?: any,
+            // ): Promise<ResourceList<Portfolios.Type>>;
+            typeaheadForWorkspace(
+                workspaceGid: string,
+                params?: Typeahead.TypeaheadParams & { resource_type: 'tag' },
+                dispatchOptions?: any,
+            ): Promise<ResourceList<Tags.Type>>;
+            typeaheadForWorkspace(
+                workspaceGid: string,
+                params?: Typeahead.TypeaheadParams,
+                dispatchOptions?: any,
+            ): Promise<ResourceList<Resource>>;
         }
     }
 
