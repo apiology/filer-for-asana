@@ -63,4 +63,11 @@ test('parseUserInput', () => {
     remaining: 'foo',
     section: 'bar',
   });
+
+  expect(parseUserInput('Grove Co plastic free - grove.com #things-to-buy')).toEqual({
+    project: 'things-to-buy',
+    raw: 'Grove Co plastic free - grove.com #things-to-buy',
+    remaining: 'Grove Co plastic free - grove.com',
+    section: null,
+  });
 });

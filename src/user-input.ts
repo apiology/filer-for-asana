@@ -27,8 +27,12 @@ const parseSection = (raw: string): {
   let rawMinusSection = raw;
   const index = raw.lastIndexOf('.');
   if (index !== -1) {
-    rawMinusSection = raw.substring(0, index);
-    section = raw.substring(index + 1)?.trim();
+    const sectionText = raw.substring(index + 1)?.trim();
+    // Check to see if someone added a section hint after last period
+    if (!sectionText.includes('#')) {
+      section = sectionText;
+      rawMinusSection = raw.substring(0, index);
+    }
   }
   return { rawMinusSection, section };
 };
