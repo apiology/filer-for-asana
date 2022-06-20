@@ -8,63 +8,19 @@ import * as Asana from 'asana';
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
 import { platform } from './platform.js';
 import { pullResult } from './asana-typeahead.js';
+import { UserInput, parseUserInput } from './user-input.js';
 
 export const logSuccess = (result: string | object): void => {
   const logger = platform().logger();
   logger.log('Acted:', result);
 };
 
+// a potential item presented to user for selection
 export type Suggestion = {
   url: string
   text: string
   description: string
 }
-
-export type UserInput = {
-  raw: string
-  project: string | null
-  section: string | null
-  remaining: string
-}
-
-export const parseProject = (raw: string): {
-  rawMinusProject: string
-  project: string | null
-} => {
-  let project = null;
-  let rawMinusProject = raw;
-  const index = raw.lastIndexOf('#');
-  if (index !== -1) {
-    rawMinusProject = raw.substring(0, index);
-    project = raw.substring(index + 1)?.trim();
-  }
-  return { rawMinusProject, project };
-};
-
-export const parseSection = (raw: string): {
-  rawMinusSection: string
-  section: string | null
-} => {
-  let section = null;
-  let rawMinusSection = raw;
-  const index = raw.lastIndexOf('.');
-  if (index !== -1) {
-    rawMinusSection = raw.substring(0, index);
-    section = raw.substring(index + 1)?.trim();
-  }
-  return { rawMinusSection, section };
-};
-
-export const parseUserInput = (raw: string): UserInput => {
-  const { rawMinusSection, section } = parseSection(raw);
-  const { rawMinusProject, project } = parseProject(rawMinusSection);
-  return {
-    raw,
-    project,
-    section,
-    remaining: rawMinusProject.trim(),
-  };
-};
 
 export const suggestProjects = async (project: string | null):
   Promise<Asana.resources.ResourceList<Asana.resources.Projects.Type> | null> => {
