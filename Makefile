@@ -31,7 +31,7 @@ build-chrome-extension: webpack
 
 build: build-alfy build-chrome-extension
 
-default: build test package quality ## build and package up for both Alfred and the Chrome Extension
+default: build test package quality ## build, package up, test and check code quality for both Alfred and the Chrome Extension
 
 package: package-chrome-extension
 
