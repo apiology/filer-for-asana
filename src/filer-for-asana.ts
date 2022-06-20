@@ -99,7 +99,7 @@ const generateTaskCreateParams = async (
     if (sectionGid == null) {
       createParams.assignee = assignee.gid;
     } else {
-      throw Error('Teach me how to assign to user task lists');
+      throw Error('Internal error - provided section but not project');
     }
   } else if (sectionGid == null) {
     createParams.projects = [projectGid];
