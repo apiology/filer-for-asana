@@ -38,6 +38,5 @@ export async function pullResult(text: string, resourceType: string, optFields: 
 
   // https://developers.asana.com/docs/typeahead
   const client = await fetchClient();
-  // throw new Error(`Looking for ${JSON.stringify(query)}`);
   return client.typeahead.typeaheadForWorkspace(workspaceGid, query);
 }
