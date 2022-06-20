@@ -6,11 +6,18 @@ Quickly creates Asana tasks from the Chrome Omnibox and Alfred workflows.
 
 ## Using Chrome Extension
 
-Go to the URL bar ("Chrome Omnibox"), then type 'fa', a space, then type your task name and hit enter.
+Go to the URL bar ("Chrome Omnibox"), then type 'fa', a space, then
+type your task name and hit enter.
+
+You can file into a project by providing it at the end, prededed by a
+`#`.  After the project, you can provide a section preceded by a `.`.
+To file into a section in 'My Tasks' (your "user task list" in Asana
+lingo), just provide a section with no project name.
 
 ## Using Alfred Workflow
 
-Similarly, activate Alfred, then type 'fa', a space, then type your task name and hit enter.
+Similarly, activate Alfred, then type 'fa', a space, then type your
+task name and hit enter.  The same search syntax applies.
 
 ## Installing Chrome Extension
 
