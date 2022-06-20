@@ -54,13 +54,15 @@ export const addSectionsToTargets = async (
   const client = await fetchClient();
   const sections = await client.sections.findByProject(projectGid);
 
-  // 1. add each section discovered via search
-  if (searchString != null) {
+  if (searchString == null) {
+    targets.push(...sections.map((section) => ({ project, section })));
+  } else {
+    // 1. add each section discovered via search
     const sectionTargets = prioritizedMatchedSectionTargets(sections.slice(1), searchString);
     targets.push(...sectionTargets.map((section) => ({ project, section })));
+    // 2. add default section at end of list
+    targets.push({ project, section: sections[0] });
   }
-  // 2. add default section at end of list
-  targets.push({ project, section: sections[0] });
 };
 
 export const targetSections = async (
