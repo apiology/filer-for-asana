@@ -29,6 +29,7 @@ const createSectionSuggestion = async (
 ): Promise<Suggestion> => {
   const p = platform();
   const config = p.config();
+  const formatter = p.formatter();
   const workspaceName = await config.fetchWorkspaceName();
   const text = userInput.remaining;
   const projectName = project == null ? 'My Tasks' : project.name;
@@ -40,7 +41,7 @@ const createSectionSuggestion = async (
   return {
     url,
     text,
-    description,
+    description: formatter.escapeDescriptionPlainText(description),
   };
 };
 
