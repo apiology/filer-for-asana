@@ -70,4 +70,11 @@ test('parseUserInput', () => {
     remaining: 'Grove Co plastic free - grove.com',
     section: null,
   });
+
+  expect(parseUserInput('Maybe I should do that...')).toEqual({
+    project: null,
+    raw: 'Maybe I should do that...',
+    remaining: 'Maybe I should do that...',
+    section: null,
+  });
 });
