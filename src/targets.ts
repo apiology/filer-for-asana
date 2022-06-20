@@ -15,8 +15,7 @@ export function prioritizedMatchedSectionTargets<T extends { name: string }>(
     if (section.name == null) {
       throw Error('name not included in results!');
     }
-    // if (section.name.toLowerCase().includes(sectionName.toLowerCase())) {
-    if (section.name.includes(sectionName)) {
+    if (section.name.toLowerCase().includes(sectionName.toLowerCase())) {
       targets.push(section);
     }
   }
