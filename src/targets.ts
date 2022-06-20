@@ -22,7 +22,7 @@ const matchScore = (
   return score;
 };
 
-export function prioritizedMatchedSectionTargets<T extends { name: string }>(
+export function prioritizedMatchedSectionTargets<T extends { name?: string }>(
   sections: (T)[],
   searchString: string
 ): T[] {

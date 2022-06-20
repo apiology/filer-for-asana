@@ -9,7 +9,8 @@
 
 // can be retired in favor of upgraded stubs once
 // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60589 and
-// https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60873
+// https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60873 and
+// https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60776
 // are merged
 
 
@@ -2912,8 +2913,7 @@ declare module 'asana' {
         }
 
         interface Resource {
-            id: number;
-            name: string;
+            name?: string;
             gid: string;
             resource_type: string;
             resource_subtype?: string;
@@ -3002,7 +3002,7 @@ declare module 'asana' {
                 query?: string | undefined;
                 count?: number | undefined;
                 opt_pretty?: boolean | undefined;
-                opt_fields?: string[] | undefined;
+                opt_fields?: string | undefined;
             }
         }
 

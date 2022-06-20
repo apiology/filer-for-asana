@@ -32,7 +32,13 @@ const createSectionSuggestion = async (
   const formatter = p.formatter();
   const workspaceName = await config.fetchWorkspaceName();
   const text = userInput.remaining;
-  const projectName = project == null ? 'My Tasks' : project.name;
+  let projectName = 'My Tasks';
+  if (project != null) {
+    if (project.name === undefined) {
+      throw Error('Name not provided on project');
+    }
+    projectName = project.name;
+  }
   const description = `File "${text}" in ${workspaceName} / ${projectName} / ${section.name}`;
   const urlObject = new URL(`filer-for-asana:${encodeURIComponent(text)}`);
   urlObject.searchParams.append('section', section.gid);
@@ -68,7 +74,7 @@ export const pullSuggestions = async (userText: string): Promise<Suggestion[]> =
 
   let projectTargets = null;
   if (userInput.project != null) {
-    projectTargets = await pullResult(userInput.project, 'project', []);
+    projectTargets = await pullResult(userInput.project, 'project', 'name');
   }
   const sectionTargets = await targetSections(projectTargets, userInput.section);
 
