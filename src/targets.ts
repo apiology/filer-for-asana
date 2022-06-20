@@ -6,10 +6,21 @@ export type Target = {
   section: Asana.resources.Sections.Type,
 }
 
-// penalize longer section names
 const matchScore = (
   name: string, searchString: string
-): number => (searchString.length - name.length);
+): number => {
+  let score = 0;
+
+  // penalize longer section names
+  score += searchString.length - name.length;
+
+  // promote matches from start of string
+  if (name.toLowerCase().indexOf(searchString.toLowerCase()) === 0) {
+    score += 10;
+  }
+
+  return score;
+};
 
 export function prioritizedMatchedSectionTargets<T extends { name: string }>(
   sections: (T)[],

@@ -27,5 +27,15 @@ describe('prioritizedMatchedSectionTargets', () => {
       { name: 'high [5]' },
     ], 'high')[0].name)
       .toEqual('high [5]');
+
+    expect(prioritizedMatchedSectionTargets([
+      { name: 'Recently assigned' },
+      { name: 'Today [0]' },
+      { name: 'On hold [2]' },
+      { name: 'In progress [5]' },
+      { name: 'Upcoming' },
+      { name: 'Later' },
+    ], 'in')[0].name)
+      .toEqual('In progress [5]');
   });
 });
