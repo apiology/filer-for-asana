@@ -157,7 +157,7 @@ export const generateSuggestions = async (userInput: UserInput): Promise<Suggest
   const suggestions = sectionSuggestions.map(({ project, section }) => {
     const text = userInput.remaining;
     const projectName = project == null ? 'My Tasks' : project.name;
-    const description = `File "${text}" in ${projectName} / ${section.name} workspace ${workspaceName}`;
+    const description = `File "${text}" in ${workspaceName} / ${projectName} / ${section.name}`;
     const urlObject = new URL(`filer-for-asana:${encodeURIComponent(text)}`);
     urlObject.searchParams.append('section', section.gid);
     const url = urlObject.href;
