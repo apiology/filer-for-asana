@@ -223,6 +223,6 @@ export const actOnInputData = async (text: string) => {
     createParams.memberships = [{ project: projectGid, section: sectionGid }];
   }
   const task = await client.tasks.create(createParams);
-  const status = `Acting upon ${text}: ${JSON.stringify(task)} `;
+  const status = `Acting upon ${text}: ${JSON.stringify(task)}`;
   return status;
 };
