@@ -82,18 +82,15 @@ export const pullSuggestions = async (userText: string): Promise<Suggestion[]> =
   return suggestions;
 };
 
-export const actOnInputData = async (text: string) => {
+const generateTaskCreateParams = async (
+  parsedText: string,
+  projectGid: string | null,
+  sectionGid: string | null
+):
+  Promise<Asana.resources.Tasks.CreateParams & { workspace: string }> => {
   const client = await fetchClient();
-  const workspaceGid = await fetchWorkspaceGid();
   const assignee = await client.users.me();
-  const url = new URL(text);
-  const sectionGid = url.searchParams.get('section');
-  const parsedText = decodeURIComponent(url.pathname);
-  let projectGid = null;
-  if (sectionGid != null) {
-    const section: Asana.resources.Sections.Type = await client.sections.findById(sectionGid);
-    projectGid = section.project?.gid;
-  }
+  const workspaceGid = await fetchWorkspaceGid();
   const createParams: Asana.resources.Tasks.CreateParams & { workspace: string } = {
     workspace: workspaceGid,
     name: parsedText,
@@ -109,6 +106,33 @@ export const actOnInputData = async (text: string) => {
   } else {
     createParams.memberships = [{ project: projectGid, section: sectionGid }];
   }
+  return createParams;
+};
+
+const parseUrl = async (text: string): Promise<{
+  parsedText: string,
+  projectGid: string | null,
+  sectionGid: string | null
+}> => {
+  const client = await fetchClient();
+  const url = new URL(text);
+  const sectionGid = url.searchParams.get('section');
+  const parsedText = decodeURIComponent(url.pathname);
+  let projectGid = null;
+  if (sectionGid != null) {
+    const section: Asana.resources.Sections.Type = await client.sections.findById(sectionGid);
+    if (section.project == null) {
+      throw new Error('Project is null!');
+    }
+    projectGid = section.project.gid;
+  }
+  return { parsedText, projectGid, sectionGid };
+};
+
+export const actOnInputData = async (text: string) => {
+  const client = await fetchClient();
+  const { parsedText, projectGid, sectionGid } = await parseUrl(text);
+  const createParams = await generateTaskCreateParams(parsedText, projectGid, sectionGid);
   const task = await client.tasks.create(createParams);
   const status = `Acting upon ${text}: ${JSON.stringify(task)}`;
   return status;
