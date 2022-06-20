@@ -1,7 +1,7 @@
 import * as Asana from 'asana';
 import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
 
-type Target = {
+export type Target = {
   project: Asana.resources.Projects.Type | null,
   section: Asana.resources.Sections.Type,
 }
