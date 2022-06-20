@@ -9,6 +9,7 @@ import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
 import { platform } from './platform.js';
 import { pullResult } from './asana-typeahead.js';
 import { UserInput, parseUserInput } from './user-input.js';
+import { targetSections } from './targets.js';
 
 export const logSuccess = (result: string | object): void => {
   const logger = platform().logger();
@@ -22,95 +23,19 @@ export type Suggestion = {
   description: string
 }
 
-export const suggestProjects = async (project: string | null):
-  Promise<Asana.resources.ResourceList<Asana.resources.Projects.Type> | null> => {
-  if (project == null) {
-    return null;
-  }
-  return pullResult(project, 'project', []);
-};
-
-export const addSectionsToSuggestions = async (
-  projectGid: string,
-  project: Asana.resources.Projects.Type | null,
-  sectionName: string | null,
-  suggestions: {
-    project: Asana.resources.Projects.Type | null,
-    section: Asana.resources.Sections.Type,
-  }[]
-) => {
-  const client = await fetchClient();
-  const sections = await client.sections.findByProject(projectGid);
-  const p = platform();
-  const logger = p.logger();
-
-  // 1. add each section discovered via search
-  if (sectionName != null) {
-    for (const section of sections.slice(1)) {
-      if (section.name == null) {
-        throw Error('name not included in results!');
-      }
-      if (section.name.includes(sectionName)) {
-        suggestions.push({ project, section });
-        logger.log(`matched ${section.name}`, { suggestions }, sectionName);
-      } else {
-        logger.log(`did not match ${section.name}`, { suggestions }, sectionName);
-      }
-    }
-    // ensure closest match (smallest section name used as a proxy) is first
-    suggestions.sort((a, b) => {
-      if (a.section.name == null) {
-        throw Error('name not included in results!');
-      }
-      if (b.section.name == null) {
-        throw Error('name not included in results!');
-      }
-      return a.section.name.length - b.section.name.length;
-    });
-  }
-  logger.log('done', { suggestions });
-  // 2. add default section at end of list
-  suggestions.push({ project, section: sections[0] });
-  logger.log('really done', { suggestions });
-};
-
-type ProjectAndSection = {
-  project: Asana.resources.Projects.Type | null,
-  section: Asana.resources.Sections.Type,
-}
-
-export const suggestSections = async (
-  projectSuggestions: Asana.resources.ResourceList<Asana.resources.Projects.Type> | null,
-  sectionName: string | null
-): Promise<ProjectAndSection[]> => {
-  const client = await fetchClient();
-  const suggestions: ProjectAndSection[] = [];
-  if (projectSuggestions == null) {
-    if (sectionName != null) {
-      // user didn't provide a project; let's assume they meant the user task list
-      const workspaceGid = await fetchWorkspaceGid();
-      const userTaskList = await client.userTaskLists.findByUser('me', { workspace: workspaceGid });
-      await addSectionsToSuggestions(userTaskList.gid, null, sectionName, suggestions);
-    }
-  } else {
-    await Promise.all(projectSuggestions.data.map((
-      project
-    ) => addSectionsToSuggestions(project.gid, project, sectionName, suggestions)));
-  }
-
-  return suggestions;
-};
-
 export const generateSuggestions = async (userInput: UserInput): Promise<Suggestion[]> => {
   const p = platform();
   const config = p.config();
   const logger = p.logger();
   const workspaceName = await config.fetchWorkspaceName();
   // TODO: using the word 'suggestion' too much
-  const projectSuggestions = await suggestProjects(userInput.project);
-  const sectionSuggestions = await suggestSections(projectSuggestions, userInput.section);
-  // 1. add item for each of sectionSuggestions
-  const suggestions = sectionSuggestions.map(({ project, section }) => {
+  let projectTargets = null;
+  if (userInput.project != null) {
+    projectTargets = await pullResult(userInput.project, 'project', []);
+  }
+  const sectionTargets = await targetSections(projectTargets, userInput.section);
+  // 1. add item for each of sectionTargets
+  const suggestions = sectionTargets.map(({ project, section }) => {
     const text = userInput.remaining;
     const projectName = project == null ? 'My Tasks' : project.name;
     const description = `File "${text}" in ${workspaceName} / ${projectName} / ${section.name}`;
