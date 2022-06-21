@@ -63,7 +63,7 @@ git checkout main
 git pull
 git stash
 last_released_version=$(npm version --json | jq -r '."alfred-filer-for-asana"')
-git log ${last_released_version:?}..
+git log v${last_released_version:?}..
 update_type= # patch/minor/major
 npm version ${update_type:?}
 git push
@@ -75,12 +75,12 @@ alfy-cleanup
 Now, remove your current installation from Alfred on your machine.
 
 ```sh
-npm install -g alfred-filer-for-asana --upgrade
+npm install --location=global alfred-filer-for-asana --upgrade
 ```
 
 Then, load Alfred | Preferences | Workflows |
-Filer for Asana | right click | Export ... | Export | choose this
-directory | Export
+Filer for Asana | right click | Export ... | (type
+in version from CLI output) | Export | choose this directory | Export
 
 Once done, make a GitHub release with the exported file (do this in a
 new tab):
