@@ -9,15 +9,19 @@ Quickly creates Asana tasks from the Chrome Omnibox and Alfred workflows.
 Go to the URL bar ("Chrome Omnibox"), then type 'fa', a space, then
 type your task name and hit enter.
 
-You can file into a project by providing it at the end, prededed by a
+You can file into a project by providing it at the end, preceded by a
 `#`.  After the project, you can provide a section preceded by a `.`.
 To file into a section in 'My Tasks' (your "user task list" in Asana
 lingo), just provide a section with no project name.
+
+<img src="./docs/screenshot-1.png" alt="screenshot showing the above steps in Chrome" height="400"/>
 
 ## Using Alfred Workflow
 
 Similarly, activate Alfred, then type 'fa', a space, then type your
 task name and hit enter.  The same search syntax applies.
+
+<img src="./docs/screenshot-2.png" alt="screenshot showing the above steps in Alfred" height="400"/>
 
 ## Installing Chrome Extension
 
@@ -39,6 +43,8 @@ file](https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project
 1. Paste in your personal access token.
 1. Provide the rest of the configuration and hit 'Save'
 
+<img src="./docs/screenshot-3.png" alt="screenshot showing the above steps in Asana and the Chrome extension options" height="400"/>
+
 ## Alfred Workflow Configuration
 
 1. Create a new "Personal access token" in
@@ -46,6 +52,8 @@ file](https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project
 1. Alfred | Workflows | Filer for Asana | [≈] icon in upper right
 1. Add values to Workflow Environment Variables section
 1. Save
+
+<img src="./docs/screenshot-4.png" alt="screenshot showing the above steps in Asana and the Chrome extension options" height="400"/>
 
 ## Legal
 
