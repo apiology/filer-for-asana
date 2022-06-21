@@ -25,4 +25,16 @@ export default class AlfredFormatter {
   };
 
   escapeDescriptionPlainText = (text: string) => text;
+
+  formatDescriptionJustWorkspace = (
+    text: string,
+    workspaceName: string
+  ) => `File "${text}" in workspace ${workspaceName}`;
+
+  formatDescriptionWithSection = (
+    text: string,
+    workspaceName: string,
+    projectName: string,
+    sectionName: string
+  ) => `File "${text}" in ${workspaceName} / ${projectName} / ${sectionName}`;
 }

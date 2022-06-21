@@ -45,4 +45,16 @@ export default class ChromeExtensionFormatter {
   };
 
   escapeDescriptionPlainText = escapeHTML;
+
+  formatDescriptionJustWorkspace = (
+    text: string,
+    workspaceName: string
+  ) => `File <dim>${this.escapeDescriptionPlainText(text)}</dim> in workspace ${this.escapeDescriptionPlainText(workspaceName)}`;
+
+  formatDescriptionWithSection = (
+    text: string,
+    workspaceName: string,
+    projectName: string,
+    sectionName: string
+  ) => `File into ${this.escapeDescriptionPlainText(projectName)} / ${this.escapeDescriptionPlainText(sectionName)}: <dim>${this.escapeDescriptionPlainText(text)}</dim>" in workspace ${this.escapeDescriptionPlainText(workspaceName)}`;
 }

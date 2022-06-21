@@ -39,7 +39,12 @@ const createSectionSuggestion = async (
     }
     projectName = project.name;
   }
-  const description = `File "${text}" in ${workspaceName} / ${projectName} / ${section.name}`;
+  if (section.name === undefined) {
+    throw Error('Name not provided on section');
+  }
+  const description = formatter.formatDescriptionWithSection(
+    text, workspaceName, projectName, section.name
+  );
   const urlObject = new URL(`filer-for-asana:${encodeURIComponent(text)}`);
   urlObject.searchParams.append('section', section.gid);
   const url = urlObject.href;
@@ -47,7 +52,7 @@ const createSectionSuggestion = async (
   return {
     url,
     text,
-    description: formatter.escapeDescriptionPlainText(description),
+    description,
   };
 };
 
@@ -56,9 +61,10 @@ const createMyTasksInboxSuggestion = async (
 ): Promise<Suggestion> => {
   const p = platform();
   const config = p.config();
+  const formatter = p.formatter();
   const workspaceName = await config.fetchWorkspaceName();
   const text = userInput.raw;
-  const description = `File "${text}" in workspace ${workspaceName}`;
+  const description = formatter.formatDescriptionJustWorkspace(text, workspaceName);
   const urlObject = new URL(`filer-for-asana:${encodeURIComponent(text)}`);
   const url = urlObject.href;
 
