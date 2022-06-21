@@ -56,5 +56,5 @@ export default class ChromeExtensionFormatter {
     workspaceName: string,
     projectName: string,
     sectionName: string
-  ) => `File into ${this.escapeDescriptionPlainText(projectName)} / ${this.escapeDescriptionPlainText(sectionName)}: <dim>${this.escapeDescriptionPlainText(text)}</dim>" in workspace ${this.escapeDescriptionPlainText(workspaceName)}`;
+  ) => `File into ${this.escapeDescriptionPlainText(projectName)} / ${this.escapeDescriptionPlainText(sectionName)}: <dim>${this.escapeDescriptionPlainText(text)}</dim> in workspace ${this.escapeDescriptionPlainText(workspaceName)}`;
 }
