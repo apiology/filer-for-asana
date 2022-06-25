@@ -96,28 +96,6 @@ open 'Filer for Asana.alfredworkflow'
 
 Now update [packal](http://www.packal.org/)
 
-## Initial release to packal.org
-
-1. Go to the [form](http://www.packal.org/node/add/alfred2-workflow)
-1. Workflow Name: Filer for Asana
-1. Version: (take latest version from package.json)
-1. Bundle ID: cc.broz.asana.filer-for-asana
-1. Short description: (take short description from README, drop
-   mention of Alfred or Chrome Extension)
-1. Icon: (upload static/chrome-extension/apiology-128x128.png) | Upload
-1. Workflow file (upload latest release from GitHub) | Upload
-1. Worfklow Description: select Text format | markdown | Copy the one
-   sentence blurb entered above, then the usage instructions (you may
-   need to merge the Chrome and Alfred instructions)
-1. Alfred Forum Link | (leave empty for now)
-1. Github URL: `https://github.com/apiology/filer-for-asana`
-1. Categories: (fill in)
-1. Tags: (fill in - e.g., asana)
-1. Applications: (fill in - probably blank)
-1. Webservices: (fill in - e.g. Asana)
-1. Packal Documentation Page: Leave blank
-1. Submit
-
 ## Initial release to Chrome Web Store
 
 1. `make clean && make`
