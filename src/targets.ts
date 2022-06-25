@@ -61,7 +61,13 @@ export const addSectionsToTargets = async (
     const sectionTargets = prioritizedMatchedSectionTargets(sections.slice(1), searchString);
     targets.push(...sectionTargets.map((section) => ({ project, section })));
     // 2. add default section at end of list
-    targets.push({ project, section: sections[0] });
+    if (project != null) {
+      // only push the inbox if they explicitly listed a project -
+      // there's already an item added at the end for the user task
+      // list, and chances are the section hint wasn't intentional
+      // anyway.
+      targets.push({ project, section: sections[0] });
+    }
   }
 };
 
