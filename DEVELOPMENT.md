@@ -107,6 +107,8 @@ alfy-cleanup
 
 Now, remove your current installation from Alfred on your machine.
 
+Then, install the newly published version via npm:
+
 ```sh
 npm install --location=global alfred-filer-for-asana --upgrade
 ```
@@ -127,7 +129,7 @@ Remove your current installation again.
 
 open 'Filer for Asana.alfredworkflow'
 
-Now update [packal](http://www.packal.org/)
+[packal](http://www.packal.org/) | Login if needed | Dashboard | Filer for Asana | edit | Workflow File | Remove | Choose File | (.alfredworkflow file) | Upload | Version | (update) | (scroll to bottom) | Submit
 
 ## Initial release to packal.org
 
