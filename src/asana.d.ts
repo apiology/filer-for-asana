@@ -1,4 +1,4 @@
-// Type definitions for node-asana 0.18.4
+// Type definitions for node-asana 0.18.14
 // Project: https://github.com/Asana/node-asana
 // Definitions by: Qubo <https://github.com/tkqubo>
 //                 Tasyp <https://github.com/tasyp>
@@ -8,7 +8,7 @@
 // TypeScript Version: 3.2
 
 // can be retired in favor of upgraded stubs once
-// https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60589 and
+// https://github.com/DefinitelyTyped/DefinitelyTyped/pull/61084 and
 // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60873 and
 // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/60776
 // are merged
@@ -839,7 +839,7 @@ declare module 'asana' {
          * @class
          * @param {Dispatcher} dispatcher The API dispatcher
          */
-        interface Attachments extends Resource {
+        interface Attachments extends TopLevelResource {
             /**
              * * Returns the full record for a single attachment.
              *   * @param {String|Number} attachment Globally unique identifier for the attachment.
@@ -948,7 +948,7 @@ declare module 'asana' {
          * @class
          * @param {Dispatcher} dispatcher The API dispatcher
          */
-        interface Events extends Resource {
+        interface Events extends TopLevelResource {
             /**
              * Dispatches a GET request to /events of the API to get a set of recent
              * changes to a resource.
@@ -1035,7 +1035,7 @@ declare module 'asana' {
          * @class
          * @param {Dispatcher} dispatcher The API dispatcher
          */
-        interface Projects extends Resource {
+        interface Projects extends TopLevelResource {
             /**
              * * Creates a new project in a workspace or team.
              * *
@@ -1323,18 +1323,95 @@ declare module 'asana' {
         }
 
         namespace Stories {
-            interface ShortType extends Resource {
+            // https://developers.asana.com/docs/story-compact
+            interface ShortType {
+                gid: string;
+                resource_type: string;
                 created_at: string;
                 created_by: Resource;
-                type: string;
-                text: string;
+                resource_subtype: string;
+                type: string; // not documented
+                text: string; // create-only
             }
 
+            // https://developers.asana.com/docs/story
             interface Type extends ShortType {
                 html_text: string;
+                is_pinned: boolean;
+                sticker_name: string | null;
+                assignee: Resource;
+                custom_field: CustomField;
+                dependency: Resource;
+                duplicate_of: Resource;
+                duplicated_from: Resource;
+                follower: Resource;
+                hearted: boolean; // deprecated
+                hearts: {
+                    gid: string;
+                    user: Resource;
+                }[]; // deprecated
+                is_edited: boolean;
+                liked: boolean;
+                likes: {
+                    gid: string;
+                    user: Resource;
+                }[];
+                new_approval_status: string;
+                new_dates: {
+                    due_at: string | null;
+                    due_on: string | null;
+                    start_on: string | null;
+                };
+                new_enum_value: Resource & {
+                    color: string;
+                    enabled: boolean;
+                };
+                new_multi_enum_values: Resource & {
+                    color: string;
+                    enabled: boolean;
+                }[];
+                new_name: string;
+                new_number_value: number;
+                new_resource_subtype: string;
+                new_section: Resource;
+                new_text_value: string;
+                num_hearts: number; // deprecated
+                num_likes: number;
+                old_approval_status: string;
+                old_dates: {
+                    due_at: string | null;
+                    due_on: string | null;
+                    start_on: string | null;
+                };
+                old_enum_value: Resource & {
+                    color: string;
+                    enabled: boolean
+                };
+                old_multi_enum_values: Resource & {
+                    color: string;
+                    enabled: boolean
+                }[];
+                old_name: string;
+                old_number_value: number;
+                old_resource_subtype: string;
+                old_section: Resource;
+                old_text_value: string;
+                previews: {
+                    fallback: string;
+                    footer: string;
+                    header: string;
+                    header_link: string;
+                    html_text: string;
+                    text: string;
+                    title: string;
+                    title_link: string;
+                }[];
+                project: Resource;
                 source: string;
+                story: ShortType;
+                tag: Resource;
                 target: Resource;
-                hearts: Type[];
+                task: Resource;
             }
         }
 
@@ -1351,7 +1428,7 @@ declare module 'asana' {
          * @class
          * @param {Dispatcher} dispatcher The API dispatcher
          */
-        interface Stories extends Resource {
+        interface Stories extends TopLevelResource {
             /**
              * * Returns the compact records for all stories on the task.
              *   * @param {String|Number} task Globally unique identifier for the task.
@@ -1440,7 +1517,7 @@ declare module 'asana' {
          * @class
          * @param {Dispatcher} dispatcher The API dispatcher
          */
-        interface Tags extends Resource {
+        interface Tags extends TopLevelResource {
             /**
              * * Creates a new tag in a workspace or organization.
              * *
@@ -1587,42 +1664,80 @@ declare module 'asana' {
         }
 
         namespace Tasks {
+            // https://developers.asana.com/docs/task
             interface Type extends Resource {
+                approval_status: string | undefined;
                 created_at: string;
                 modified_at: string;
                 completed_at: string | null;
                 completed: boolean;
+                dependencies: Resource[]; // opt in
+                dependents: Resource[]; // opt in
                 due_on: string | null;
+                start_at: string | null;
                 start_on: string | null;
-                due_at: string;
-                assignee_status: string;
+                due_at: string | null;
+                assignee_status: string; // deprecated
                 assignee: Assignee | null;
+                assignee_section: Resource;
+                external: { // opt-in
+                    data: string | undefined;
+                    gid: string | undefined;
+                } | undefined;
+                html_notes: string | undefined; // opt in
+                is_rendered_as_separator: boolean | undefined; // opt in
                 notes: string;
                 workspace: Resource;
-                num_hearts: number;
-                hearted: boolean;
-                parent: Resource;
+                num_hearts: number; // deprecated
+                hearted: boolean; // deprecated
+                hearts: Resource[]; // deprecated
+                parent: Resource | null;
+                num_likes: number;
+                num_subtasks: number; // opt in
+                liked: boolean;
+                likes: {
+                    gid: string
+                    user: Resource;
+                }[];
                 tags: Resource[];
                 projects: Resource[];
                 memberships: Membership[];
                 followers: Resource[];
                 custom_fields: CustomField[];
+                permalink_url: string;
             }
 
             // https://developers.asana.com/docs/create-a-task
-            // https://forum.asana.com/t/add-task-to-a-section-upon-creation-via-api-request/51957/5
             interface CreateParams {
-                name: string;
+                approval_status?: string | undefined;
                 assignee?: string | undefined;
+                assignee_section?: string | undefined;
+                // assignee_status: string; // deprecated - use assignee_section
                 completed?: boolean | undefined;
-                hearted?: boolean | undefined;
+                // hearted?: boolean | undefined; // deprecated and removed from documentation
+                custom_fields?: { [index: string]: number | string } | undefined;
+                due_at?: string | undefined;
+                due_on?: string | null | undefined;
+                external?: {
+                    data?: string | undefined;
+                    gid?: string | undefined;
+                } | undefined;
+                followers?: string[] | undefined; // create-only
+                html_notes?: string | undefined;
+                liked?: boolean | undefined;
+                name?: string | undefined;
                 notes?: string | undefined;
-                custom_fields?: Object | undefined;
                 memberships?: {
                     project: string;
                     section: string;
                 }[] | undefined;
+                parent?: string | undefined;
                 projects?: string[] | undefined; // create-only
+                resource_subtype?: string | undefined;
+                start_at?: string | null | undefined;
+                start_on?: string | null | undefined;
+                tags?: string[] | undefined; // create-only
+                workspace?: string | undefined;
             }
 
             // https://developers.asana.com/docs/update-a-task
@@ -1634,11 +1749,16 @@ declare module 'asana' {
                 custom_fields?: { [index: string]: number | string } | undefined;
                 due_at?: string | undefined;
                 due_on?: string | null | undefined;
+                external?: {
+                    data?: string | undefined;
+                    gid?: string | undefined;
+                } | undefined;
                 html_notes?: string | undefined;
                 liked?: boolean | undefined;
                 name?: string | undefined;
                 notes?: string | undefined;
                 parent?: string | undefined;
+                start_at?: string | null | undefined;
                 start_on?: string | null | undefined;
                 workspace?: string | undefined;
             }
@@ -1687,7 +1807,7 @@ declare module 'asana' {
          * @class
          * @param {Dispatcher} dispatcher The API dispatcher
          */
-        interface Tasks extends Resource {
+        interface Tasks extends TopLevelResource {
             /**
              * * Creating a new task is as easy as POSTing to the `/tasks` endpoint
              * * with a data block containing the fields you'd like to set on the task.
@@ -2110,7 +2230,7 @@ declare module 'asana' {
 
         var Sections: SectionsStatic;
 
-        interface Sections extends Resource {
+        interface Sections extends TopLevelResource {
             /**
              * Returns the compact records for all sections in the specified project.
              * @param {String|Number} project The project to get sections from.
@@ -2163,7 +2283,7 @@ declare module 'asana' {
          * @class
          * @param {Dispatcher} dispatcher The API dispatcher
          */
-        interface Teams extends Resource {
+        interface Teams extends TopLevelResource {
             /**
              * * Returns the full record for a single team.
              *   * @param {String|Number} team Globally unique identifier for the team.
@@ -2279,7 +2399,7 @@ declare module 'asana' {
          * @class
          * @param {Dispatcher} dispatcher The API dispatcher
          */
-        interface Users extends Resource {
+        interface Users extends TopLevelResource {
             /**
              * * Returns the full user record for the currently authenticated user.
              *   * @param {Object} [params] Parameters for the request
@@ -2417,7 +2537,7 @@ declare module 'asana' {
          * @class
          * @param {Dispatcher} dispatcher The API dispatcher
          */
-        interface Webhooks extends Resource {
+        interface Webhooks extends TopLevelResource {
             /**
              * * Establishing a webhook is a two-part process. First, a simple HTTP POST
              * * similar to any other resource creation. Since you could have multiple
@@ -2533,7 +2653,7 @@ declare module 'asana' {
          * @class
          * @param {Dispatcher} dispatcher The API dispatcher
          */
-        interface Workspaces extends Resource {
+        interface Workspaces extends TopLevelResource {
             /**
              * * Returns the full workspace record for a single workspace.
              *   * @param {String|Number} workspace Globally unique identifier for the workspace or organization.
@@ -2691,7 +2811,7 @@ declare module 'asana' {
          * @class
          * @param {Dispatcher} dispatcher The API dispatcher
          */
-        interface UserTaskLists extends Resource {
+        interface UserTaskLists extends TopLevelResource {
             /**
              * Returns the full record for the user task list for the given user
              * @param {String|Number} user An identifier for the user. Can be one of an email address,
@@ -2791,7 +2911,7 @@ declare module 'asana' {
          * @param {Dispatcher} dispatcher
          * @constructor
          */
-        interface Resource {
+        interface TopLevelResource {
             /**
              * Dispatches a GET request to the API, where the expected result is a
              * single resource.
@@ -2866,12 +2986,12 @@ declare module 'asana' {
             dispatchDelete(path: string, dispatchOptions?: any): Promise<any>;
         }
 
-        interface ResourceStream<T extends Resource> {
+        interface ResourceStream<T extends AnonymousResource> {
             on(command: 'data', callback: (resource: T) => any): void;
             on(command: 'end' | 'finish' | 'error', callback: () => void): void;
         }
 
-        interface ResourceList<T extends Resource> {
+        interface ResourceList<T extends AnonymousResource> {
             /**
              * Get the next page of results in a collection.
              *
@@ -2912,11 +3032,14 @@ declare module 'asana' {
             os_version: string;
         }
 
-        interface Resource {
-            name?: string;
+        interface AnonymousResource {
             gid: string;
-            resource_type: string;
+            resource_type?: string;
             resource_subtype?: string;
+        }
+
+        interface Resource extends AnonymousResource {
+            name?: string;
         }
 
         interface PaginationParams extends Params {
@@ -2955,7 +3078,7 @@ declare module 'asana' {
             }
         }
 
-        interface CustomFields extends Resource {
+        interface CustomFields extends TopLevelResource {
             // https://github.com/Asana/node-asana/blob/6bf00fb3257847744bf0ebe2dc0e95c445477282/lib/resources/gen/custom_fields.js#L91-L110
             /**
              * Get a workspace's custom fields
@@ -2984,7 +3107,11 @@ declare module 'asana' {
             enabled: boolean;
             enum_options: EnumValue[] | null;
             enum_value: EnumValue | null;
+            precision: number | null;
             number_value: number | null;
+            created_by: Resource;
+            display_value: string | null;
+            type: string | null;
         }
 
         interface CustomFieldsStatic {
@@ -3006,7 +3133,7 @@ declare module 'asana' {
             }
         }
 
-        interface Typeahead extends Resource {
+        interface Typeahead extends TopLevelResource {
             // https://github.com/Asana/node-asana/blob/6bf00fb3257847744bf0ebe2dc0e95c445477282/lib/resources/gen/typeahead.js#L19-L40
             /**
              * Get objects via typeahead
@@ -3028,39 +3155,9 @@ declare module 'asana' {
              */
             typeaheadForWorkspace(
                 workspaceGid: string,
-                params?: Typeahead.TypeaheadParams & { resource_type: 'custom_field' },
-                dispatchOptions?: any,
-            ): Promise<ResourceList<CustomFields.Type>>;
-            typeaheadForWorkspace(
-                workspaceGid: string,
-                params?: Typeahead.TypeaheadParams & { resource_type: 'project' },
-                dispatchOptions?: any,
-            ): Promise<ResourceList<Projects.Type>>;
-            // typeaheadForWorkspace(
-            //     workspaceGid: string,
-            //     params?: Typeahead.TypeaheadParams & { resource_type: 'portfolio' },
-            //     dispatchOptions?: any,
-            // ): Promise<ResourceList<Portfolios.Type>>;
-            typeaheadForWorkspace(
-                workspaceGid: string,
-                params?: Typeahead.TypeaheadParams & { resource_type: 'tag' },
-                dispatchOptions?: any,
-            ): Promise<ResourceList<Tags.Type>>;
-            typeaheadForWorkspace(
-                workspaceGid: string,
-                params?: Typeahead.TypeaheadParams & { resource_type: 'task' },
-                dispatchOptions?: any,
-            ): Promise<ResourceList<Tasks.Type>>;
-            typeaheadForWorkspace(
-                workspaceGid: string,
-                params?: Typeahead.TypeaheadParams & { resource_type: 'user' },
-                dispatchOptions?: any,
-            ): Promise<ResourceList<Users.Type>>;
-            typeaheadForWorkspace(
-                workspaceGid: string,
                 params?: Typeahead.TypeaheadParams,
                 dispatchOptions?: any,
-            ): Promise<ResourceList<Resource>>;
+            ): Promise<ResourceList<Tasks.Type>>;
         }
     }
 
