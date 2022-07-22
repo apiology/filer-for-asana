@@ -634,6 +634,13 @@
   dependencies:
     defer-to-connect "^2.0.1"
 
+"@types/asana@^0.18.9":
+  version "0.18.9"
+  resolved "https://registry.yarnpkg.com/@types/asana/-/asana-0.18.9.tgz#fe58a4fa18dfe11793e473fee222ffbe2e2ce39b"
+  integrity sha512-s6VzqMTux/89lSElhUPYk2LR1pPPx9NfSkYRM20QC3SflwUvcoJuiHOWfdeN99EioCULK68w+zn0YvReZL3r8w==
+  dependencies:
+    "@types/bluebird" "*"
+
 "@types/babel__core@^7.1.14":
   version "7.1.19"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.19.tgz#7b497495b7d1b4812bdb9d02804d0576f43ee460"
@@ -667,7 +674,7 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/bluebird@^3.5.36":
+"@types/bluebird@*", "@types/bluebird@^3.5.36":
   version "3.5.36"
   resolved "https://registry.npmjs.org/@types/bluebird/-/bluebird-3.5.36.tgz"
   integrity sha512-HBNx4lhkxN7bx6P0++W8E289foSu8kO8GCk2unhuVggO+cE7rh9DhZUyPhUxNRG9m+5B5BTKxZQ5ZP92x/mx9Q==
