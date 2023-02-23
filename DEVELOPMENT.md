@@ -64,8 +64,12 @@ npm install -g alfred-filer-for-asana --upgrade
 ```
 
 Then, load Alfred | Preferences | Workflows |
-Filer for Asana | right click | Export ... | Export | choose this
-directory | Export
+Filer for Asana
+
+right click | Edit Details | Description | Copy from README.md |
+Category | (set as appropriate) | Save
+
+right click | Export ... | Export | choose this directory | Export
 
 Once done, make a GitHub release with the exported file:
 
@@ -113,6 +117,12 @@ Then, install the newly published version via npm:
 npm install --location=global alfred-filer-for-asana --upgrade
 ```
 
+Verify the version installed matches what you just published:
+
+```sh
+npm list --location=global | grep alfred-filer-for-asana
+```
+
 Then, load Alfred | Preferences | Workflows |
 Filer for Asana | right click | Export ... | (type
 in version from CLI output) | Export | choose this directory | Export
@@ -125,14 +135,35 @@ new_release=$(npm version --json | jq -r '."alfred-filer-for-asana"')
 gh release create v${new_release:?} 'Filer for Asana.alfredworkflow'
 ```
 
-Remove your current installation again.
+Delete your current installation in Alfred again.
 
-open 'Filer for Asana.alfredworkflow'
+open 'Filer for Asana.alfredworkflow' | configure as prompted | Import
 
 [packal](http://www.packal.org/) | Login if needed | Dashboard | Filer for Asana | edit | Workflow File | Remove | Choose File | (.alfredworkflow file) | Upload | Version | (update) | (scroll to bottom) | Submit
 
 ## Initial release to packal.org
 
+1. Go through at least the screenshot generation steps of 'Initial
+   release to Chrome Web Store'
+1. Note down what the existing screenshots are, including the existing
+   left and right sides of split screen images: `open
+   docs/screenshot-*.png`
+1. Plan out what additional screenshots you'd like to have in the
+   gallery and what will be reused.
+1. Generate 1280x800 (or scaled up) screenshots and save as
+   `docs/screenshot-n-raw.png` and so on
+1. Stage the screenshot raw files in git.
+1. Add any annotations and save `docs/screenshot-n.paint` and so on.
+   Open a similar `.paint` from a sibling project to copy and paste
+   the annotation text to keep to the same style.
+1. Stage the screenshot paint files in git.
+1. File | Save As... | png | `docs/screenshot-n.png` (and so on) | Save
+1. Image | Adjust Size... | Scale proportionally ☑ | Resample image ☑
+   | Get to 1280x800 (or just under if ratio isn't right) | OK
+1. Use adjust size to add transparent border until exactly as 1200x800
+   (don't 'Scale proportionally' or 'Resample image' this time) | OK
+1. Stage `screenshot-n.png` (and so on) in git.
+1. Ensure `docs/screenshot-n.png` is scaled to 1280x800 with `file` command
 1. Go to the [form](http://www.packal.org/node/add/alfred2-workflow)
 1. Workflow Name: Filer for Asana
 1. Version: (take latest version from package.json)
@@ -199,9 +230,10 @@ open 'Filer for Asana.alfredworkflow'
 1. Update screenshots in `docs/` for any new features
 1. Update [README.md](./README.md) with new screenshots
 1. PR screenshot updates in
-1. PR a bump to the version in `static/chrome-extension/manifest.json`
-1. `git checkout main && git pull`
-1. `make clean && make`
+1. `git stash && git checkout main && git pull`
+1. Bump the version in `static/chrome-extension/manifest.json` locally.
+1.`git commit -m "Bump version" static/chrome-extension/manifest.json`
+1. `git push && make clean && make`
 1. Update [package.zip](./package.zip) in [developer dashboard](https://chrome.google.com/u/1/webstore/devconsole/d34ba2e8-8b5a-4417-889e-4047c35522d0) as `apiology-cws` user.
 1. Upload any new screenshots
 1. Update description to match current README.md - manually translate
@@ -209,4 +241,3 @@ open 'Filer for Asana.alfredworkflow'
 1. Save draft
 1. ... | Preview
 1. [Publish](https://developer.chrome.com/docs/webstore/update/)
-1. Update options.html link in README.md

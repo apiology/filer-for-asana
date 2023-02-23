@@ -1,16 +1,10 @@
-import Cache from './cache.js';
-import Config from './config.js';
-import Logger from './logger.js';
-import Formatter from './formatter.js';
+import { Logger } from './logger.js';
+import { Formatter } from './formatter.js';
 
-export abstract class Platform {
-  abstract config(): Config;
+interface Platform {
+  logger(): Logger;
 
-  abstract cache(): Cache;
-
-  abstract logger(): Logger;
-
-  abstract formatter(): Formatter;
+  formatter(): Formatter;
 }
 
 let thePlatform: Platform | null = null;

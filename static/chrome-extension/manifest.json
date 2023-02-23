@@ -12,13 +12,14 @@
     "storage"
   ],
   "omnibox": { "keyword": "fa" },
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
-  "browser_action": {
+  "content_scripts": [
+    {
+      "matches": ["https://app.asana.com/*"],
+      "js": ["content-script.js"]
+    }
+  ],
+  "action": {
     "default_title": "Make this page red"
   },
-  "options_page": "options.html",
   "manifest_version": 3
 }
