@@ -7,11 +7,11 @@
     "github_username": "apiology",
     "multicli_keyword": "fa",
     "open_source_license": "MIT license",
-    "options": "no",
+    "options": "yes",
     "project_name": "Filer for Asana",
     "project_short_description": "Quickly creates Asana tasks from the Chrome Omnibox and Alfred workflows.",
     "project_slug": "filer-for-asana",
-    "service_worker": "no",
+    "service_worker": "yes",
     "type_of_github_repo": "private",
     "version": "0.1.0"
 }
