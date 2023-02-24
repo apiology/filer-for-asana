@@ -59,9 +59,7 @@ Related backlog tasks:
 First, run these commands:
 
 ```sh
-git checkout main
-git pull
-git stash
+git stash && git checkout main && git pull
 last_released_version=$(npm version --json | jq -r '."alfred-filer-for-asana"')
 git log v${last_released_version:?}..
 update_type= # patch/minor/major
@@ -102,7 +100,7 @@ Delete your current installation in Alfred again.
 
 open 'Filer for Asana.alfredworkflow' | configure as prompted | Import
 
-[packal](http://www.packal.org/) | Login if needed | Dashboard | Filer for Asana | edit | Workflow File | Remove | Choose File | (.alfredworkflow file) | Upload | Version | (update) | (scroll to bottom) | Submit
+[packal](http://www.packal.org/) | Login if needed | Dashboard | Filer for Asana | Edit current | Workflow File | Remove | Choose File | (.alfredworkflow file) | Upload | Version | (update) | (scroll to bottom) | Submit
 
 ## Initial release to Chrome Web Store
 
