@@ -67,6 +67,7 @@
     "alfy": "^1.0.0",
     "asana": "^0.18.5",
     "buffer": "^6.0.3",
+    "hook-std": "^3.0.0",
     "lodash": "^4.17.21",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
@@ -80,7 +81,7 @@
   "resolutions": {
     "asana/**/browser-request": "file:polyfills/browser-request-via-fetch",
     "asana/**/json-schema": "^0.4",
-      "**/minimatch": "^3.0.5",
+    "**/minimatch": "^3.0.5",
     "**/json5": "^1.0.2",
     "alfy/**/plist": "^3.0.5",
     "alfy/**/got": "^12.1.0"

@@ -2869,7 +2869,7 @@ hjson@^3.2.2:
 
 hook-std@^3.0.0:
   version "3.0.0"
-  resolved "https://registry.npmjs.org/hook-std/-/hook-std-3.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/hook-std/-/hook-std-3.0.0.tgz#47038a01981e07ce9d83a6a3b2eb98cad0f7bd58"
   integrity sha512-jHRQzjSDzMtFy34AGj1DN+vq54WVuhSvKgrHf0OMiFQTwDD4L/qqofVEWjLOBMTn5+lCD3fPg32W9yOfnEJTTw==
 
 hosted-git-info@^2.1.4:
