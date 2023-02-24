@@ -9,10 +9,10 @@
     "multicli_keyword": "fa",
     "open_source_license": "MIT license",
     "options": "yes",
-    "service_worker": "yes",
     "project_name": "Filer for Asana",
     "project_short_description": "Quickly creates Asana tasks from the Chrome Omnibox and Alfred workflows.",
     "project_slug": "filer-for-asana",
+    "service_worker": "yes",
     "type_of_github_repo": "private",
     "version": "0.1.0"
 }

@@ -66,7 +66,12 @@ export const addSectionsToTargets = async (
       // there's already an item added at the end for the user task
       // list, and chances are the section hint wasn't intentional
       // anyway.
-      targets.push({ project, section: sections[0] });
+      const section = sections[0];
+      if (section == null) {
+        throw Error(`No sections found in ${project} via API call`);
+      }
+
+      targets.push({ project, section });
     }
   }
 };

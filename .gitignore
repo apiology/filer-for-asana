@@ -56,3 +56,15 @@ requirements_dev.txt.installed
 /package.zip
 /alfred-filer-for-asana-*.tgz
 /Filer for Asana.alfredworkflow
+
+# Provided by user
+/config.js
+
+# from jest
+/coverage
+
+# from webpack
+/dist/chrome-extension
+
+# from yarn
+/yarn-error.log
