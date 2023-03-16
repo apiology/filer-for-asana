@@ -92,8 +92,9 @@ Once done, make a GitHub release with the exported file (do this in a
 new tab):
 
 ```sh
+cd ../filer-for-asana
 new_release=$(npm version --json | jq -r '."alfred-filer-for-asana"')
-gh release create v${new_release:?} 'Filer for Asana.alfredworkflow'
+gh release create --generate-notes v${new_release:?} 'Filer for Asana.alfredworkflow'
 ```
 
 Delete your current installation in Alfred again.
