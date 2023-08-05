@@ -6,5 +6,5 @@ export abstract class Config {
   validate = async (): Promise<void> => {
     await this.fetchAsanaAccessToken();
     await this.fetchWorkspaceName();
-  }
+  };
 }
