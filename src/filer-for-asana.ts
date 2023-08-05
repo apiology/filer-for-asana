@@ -43,7 +43,10 @@ const createSectionSuggestion = async (
     throw Error('Name not provided on section');
   }
   const description = formatter.formatDescriptionWithSection(
-    text, workspaceName, projectName, section.name
+    text,
+    workspaceName,
+    projectName,
+    section.name
   );
   const urlObject = new URL(`filer-for-asana:${encodeURIComponent(text)}`);
   urlObject.searchParams.append('section', section.gid);
@@ -104,9 +107,19 @@ const generateTaskCreateParams = async (
   const client = await fetchClient();
   const assignee = await client.users.me();
   const workspaceGid = await fetchWorkspaceGid();
+  let notes;
+  let name;
+  if (parsedText.match(/^(https?:\/\/)/)) {
+    const url = parsedText;
+    name = url;
+    notes = url;
+  } else {
+    name = parsedText;
+  }
   const createParams: Asana.resources.Tasks.CreateParams & { workspace: string } = {
     workspace: workspaceGid,
-    name: parsedText,
+    name,
+    notes,
   };
   if (projectGid == null) {
     if (sectionGid == null) {
