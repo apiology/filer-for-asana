@@ -6,9 +6,7 @@ export type Target = {
   section: Asana.resources.Sections.Type,
 }
 
-const matchScore = (
-  name: string, searchString: string
-): number => {
+const matchScore = (name: string, searchString: string): number => {
   let score = 0;
 
   // penalize longer section names
