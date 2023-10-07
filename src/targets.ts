@@ -75,7 +75,7 @@ export const addSectionsToTargets = async (
 };
 
 export const targetSections = async (
-  projectTargets: Asana.resources.ResourceList<Asana.resources.Projects.Type> | null,
+  projectTargets: Asana.resources.Projects.Type[] | null,
   sectionName: string | null
 ): Promise<Target[]> => {
   const client = await fetchClient();
@@ -88,7 +88,7 @@ export const targetSections = async (
       await addSectionsToTargets(userTaskList.gid, null, sectionName, targets);
     }
   } else {
-    await Promise.all(projectTargets.data.map((
+    await Promise.all(projectTargets.map((
       project
     ) => addSectionsToTargets(project.gid, project, sectionName, targets)));
   }

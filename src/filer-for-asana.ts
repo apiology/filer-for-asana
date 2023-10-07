@@ -59,6 +59,17 @@ const createSectionSuggestion = async (
   };
 };
 
+const preferCompleteNames = (
+  projectName: string,
+  projectTargets: Asana.resources.ResourceList<Asana.resources.Projects.Type>
+): Asana.resources.Projects.Type[] => {
+  // segment projectTargets.data into ones which exactly match projectName and those that don't
+  const exactMatches = projectTargets.data.filter((project) => project.name === projectName);
+  const partialMatches = projectTargets.data.filter((project) => project.name !== projectName);
+  // return exact matches first, then partial matches
+  return exactMatches.concat(partialMatches);
+};
+
 const createMyTasksInboxSuggestion = async (
   userInput: UserInput
 ): Promise<Suggestion> => {
@@ -81,9 +92,10 @@ export const pullSuggestions = async (userText: string): Promise<Suggestion[]> =
 
   const userInput = parseUserInput(userText);
 
-  let projectTargets = null;
+  let projectTargets: Asana.resources.Projects.Type[] | null = null;
   if (userInput.project != null) {
-    projectTargets = await pullResult(userInput.project, 'project', 'name');
+    const rawProjectTargets = await pullResult(userInput.project, 'project', 'name');
+    projectTargets = preferCompleteNames(userInput.project, rawProjectTargets);
   }
   const sectionTargets = await targetSections(projectTargets, userInput.section);
 
