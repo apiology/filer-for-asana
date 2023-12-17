@@ -43,15 +43,14 @@ export function prioritizedMatchedSectionTargets<T extends { name?: string }>(
   return scoredTargets.map((st) => st.section);
 }
 
-export const addSectionsToTargets = async (
+export const targetSectionsForProject = async (
   projectGid: string,
   project: Asana.resources.Projects.Type | null,
-  searchString: string | null,
-  targets: Target[]
-): Promise<void> => {
+  searchString: string | null
+): Promise<Target[]> => {
   const client = await fetchClient();
   const sections = await client.sections.findByProject(projectGid);
-
+  const targets = [];
   if (searchString == null) {
     targets.push(...sections.map((section) => ({ project, section })));
   } else {
@@ -72,6 +71,7 @@ export const addSectionsToTargets = async (
       targets.push({ project, section });
     }
   }
+  return targets;
 };
 
 export const targetSections = async (
@@ -79,19 +79,16 @@ export const targetSections = async (
   sectionName: string | null
 ): Promise<Target[]> => {
   const client = await fetchClient();
-  const targets: Target[] = [];
   if (projectTargets == null) {
+    // user didn't provide a project; let's assume they meant the user task list
     if (sectionName != null) {
-      // user didn't provide a project; let's assume they meant the user task list
       const workspaceGid = await fetchWorkspaceGid();
       const userTaskList = await client.userTaskLists.findByUser('me', { workspace: workspaceGid });
-      await addSectionsToTargets(userTaskList.gid, null, sectionName, targets);
+      return targetSectionsForProject(userTaskList.gid, null, sectionName);
     }
-  } else {
-    await Promise.all(projectTargets.map((
-      project
-    ) => addSectionsToTargets(project.gid, project, sectionName, targets)));
+    return [];
   }
-
-  return targets;
+  return (await Promise.all(projectTargets.map((
+    project
+  ) => targetSectionsForProject(project.gid, project, sectionName)))).flat();
 };
