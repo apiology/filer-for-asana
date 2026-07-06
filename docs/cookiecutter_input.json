@@ -2,7 +2,7 @@
     "_checkout": null,
     "_output_dir": "/Users/broz/src/filer-for-asana/.git/cookiecutter",
     "_repo_dir": "/Users/broz/.cookiecutters/cookiecutter-multicli",
-    "_template": "https://github.com/apiology/cookiecutter-multicli.git",
+    "_template": "/Users/broz/.cookiecutters/cookiecutter-multicli",
     "asana_api": "yes",
     "asana_related": "yes",
     "content_script": "no",
