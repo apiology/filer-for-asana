@@ -4,7 +4,7 @@ import { fetchClient, fetchWorkspaceGid } from './asana-base.js';
 export type Target = {
   project: Asana.resources.Projects.Type | null,
   section: Asana.resources.Sections.Type,
-}
+};
 
 const matchScore = (name: string, searchString: string): number => {
   let score = 0;
