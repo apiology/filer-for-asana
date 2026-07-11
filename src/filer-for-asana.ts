@@ -21,7 +21,7 @@ export type Suggestion = {
   url: string
   text: string
   description: string
-}
+};
 
 const createSectionSuggestion = async (
   userInput: UserInput,
@@ -114,8 +114,7 @@ const generateTaskCreateParams = async (
   parsedText: string,
   projectGid: string | null,
   sectionGid: string | null
-):
-  Promise<Asana.resources.Tasks.CreateParams & { workspace: string }> => {
+): Promise<Asana.resources.Tasks.CreateParams & { workspace: string }> => {
   const client = await fetchClient();
   const assignee = await client.users.me();
   const workspaceGid = await fetchWorkspaceGid();

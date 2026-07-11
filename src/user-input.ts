@@ -3,7 +3,7 @@ export type UserInput = {
   project: string | null
   section: string | null
   remaining: string
-}
+};
 
 const parseProject = (raw: string): {
   rawMinusProject: string
