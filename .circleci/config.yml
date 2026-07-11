@@ -21,6 +21,9 @@ commands:
             export PATH="${HOME}/.rbenv/bin:${HOME}/.rbenv/shims:${PATH}"
             export PATH="${HOME}/project/node_modules/.bin:${PATH}"
             export PATH="$(pwd)/bin:${PATH}"
+            export NVM_DIR="${HOME}/.nvm"
+            # shellcheck disable=SC1091
+            [ -s "${NVM_DIR}/nvm.sh" ] && . "${NVM_DIR}/nvm.sh"
             eval "$(pyenv init --path)"
             eval "$(pyenv virtualenv-init -)"
             eval "$(rbenv init -)"
